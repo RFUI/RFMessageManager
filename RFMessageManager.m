@@ -1,9 +1,10 @@
 
 #import "RFMessageManager.h"
-#import "dout.h"
+#import "NSArray+RFKit.h"
 
 @interface RFMessageManager ()
-@property (nonatomic) NSMutableArray<__kindof RFMessage *> *messageQueue;
+@property (nonatomic) NSMutableArray<__kindof RFMessage *> *_RFMessageManager_messageQueue;
+@property (nullable) __kindof RFMessage *_RFMessageManager_displayingMessage;
 @end
 
 @implementation RFMessageManager
@@ -16,124 +17,159 @@ RFInitializingRootForNSObject
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p; displayingMessage = %@; messageQueue = %@>", self.class, (void *)self, self.displayingMessage, self.messageQueue];
+    return [NSString stringWithFormat:@"<%@: %p; displayingMessage = %@; messageQueue = %@>", self.class, (void *)self, self._RFMessageManager_displayingMessage, self._RFMessageManager_messageQueue];
 }
 
-- (NSMutableArray<__kindof RFMessage *> *)messageQueue {
-    if (_messageQueue) return _messageQueue;
-    _messageQueue = [NSMutableArray arrayWithCapacity:8];
-    return _messageQueue;
+- (RFMessage *)displayingMessage {
+    return self._RFMessageManager_displayingMessage;
 }
 
-- (void)hideWithGroupIdentifier:(NSString *)identifier {
-    _dout_info(@"Hide message with group identifier: %@", identifier)
-
-    if (!identifier) {
-        [self.messageQueue removeAllObjects];
-        [self hideWithIdentifier:self.displayingMessage.identifier];
-        return;
-    }
-
-    [self.messageQueue filterUsingPredicate:[NSPredicate predicateWithFormat:@"%K != %@", @keypathClassInstance(RFMessage, groupIdentifier), identifier]];
-
-    if ([identifier isEqualToString:self.displayingMessage.groupIdentifier]) {
-        [self hideWithIdentifier:self.displayingMessage.identifier];
-    }
-
-    _dout_info(@"After hideWithGroupIdentifier self = %@", self)
+- (NSArray<RFMessage *> *)queuedMessages {
+    return self._RFMessageManager_messageQueue.copy;
 }
 
 #pragma mark - Queue Manage
+
+- (NSMutableArray<__kindof RFMessage *> *)_RFMessageManager_messageQueue {
+    if (__RFMessageManager_messageQueue) return __RFMessageManager_messageQueue;
+    __RFMessageManager_messageQueue = [NSMutableArray arrayWithCapacity:8];
+    return __RFMessageManager_messageQueue;
+}
+
 - (void)showMessage:(RFMessage *)message {
-    _dout_info(@"Show message: %@", message)
     NSParameterAssert(message.identifier);
 
     // If not displaying any, display it
-    if (!self.displayingMessage) {
-        [self replaceMessage:self.displayingMessage withNewMessage:message];
+    RFMessage *dm = self._RFMessageManager_displayingMessage;
+    if (!dm) {
+        [self _RFMessageManager_replaceMessage:dm withNewMessage:message];
         return;
     }
 
+    NSMutableArray *mq = self._RFMessageManager_messageQueue;
     if (message.priority >= RFMessageDisplayPriorityReset) {
-        [self.messageQueue removeAllObjects];
+        [mq removeAllObjects];
         // Continue
     }
-
+    
     if (message.priority >= RFMessageDisplayPriorityHigh) {
-        [self replaceMessage:self.displayingMessage withNewMessage:message];
+        [self _RFMessageManager_replaceMessage:dm withNewMessage:message];
         return;
     }
 
     // Needs update queue, just add or replace
-    NSUInteger ix = [self.messageQueue indexOfObject:message];
+    NSUInteger ix = [mq indexOfObject:message];
     if (ix != NSNotFound) {
-        RFMessage *messageInQueue = (self.messageQueue)[ix];
+        RFMessage *messageInQueue = mq[ix];
         if (message.priority >= messageInQueue.priority) {
             // Readd it
-            [self.messageQueue removeObject:message];
-            [self.messageQueue addObject:message];
+            [mq removeObject:message];
+            [mq addObject:message];
         }
         // Else ignore new message.
     }
     else {
-        [self.messageQueue addObject:message];
+        [mq addObject:message];
     }
-    _dout_info(@"After showMessage, self = %@", self);
 }
 
 - (void)hideWithIdentifier:(NSString *)identifier {
-    _dout_info(@"Hide message with identifier: %@", identifier)
-
+    RFMessage *dm = self._RFMessageManager_displayingMessage;
     if (!identifier) {
-        [self.messageQueue removeAllObjects];
-        [self replaceMessage:self.displayingMessage withNewMessage:[self popNextMessageToDisplay]];
+        [self._RFMessageManager_messageQueue removeAllObjects];
+        [self _RFMessageManager_replaceMessage:dm withNewMessage:self._RFMessageManager_popNextMessageToDisplay];
         return;
     }
 
-    RFMessage *toRemove = [RFMessage new];
-    toRemove.identifier = identifier;
-    [self.messageQueue removeObject:toRemove];
+    [self._RFMessageManager_messageQueue removeObjectsPassingTest:^BOOL(__kindof RFMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj.identifier isEqualToString:identifier];
+    }];
 
-    if ([identifier isEqualToString:self.displayingMessage.identifier]) {
-        [self replaceMessage:self.displayingMessage withNewMessage:[self popNextMessageToDisplay]];
+    if ([identifier isEqualToString:dm.identifier]) {
+        [self _RFMessageManager_replaceMessage:dm withNewMessage:self._RFMessageManager_popNextMessageToDisplay];
     }
-    _dout_info(@"After hideWithIdentifier, self = %@", self);
 }
 
-- (RFMessage *)popNextMessageToDisplay {
+- (void)hideWithGroupIdentifier:(NSString *)identifier {
+    RFMessage *dm = self._RFMessageManager_displayingMessage;
+    if (!identifier) {
+        [self._RFMessageManager_messageQueue removeAllObjects];
+        [self hideWithIdentifier:dm.identifier];
+        return;
+    }
+    
+    [self._RFMessageManager_messageQueue filterUsingPredicate:[NSPredicate predicateWithFormat:@"%K != %@", @keypathClassInstance(RFMessage, groupIdentifier), identifier]];
+    
+    if ([dm.groupIdentifier isEqualToString:identifier]) {
+        [self hideWithIdentifier:dm.identifier];
+    }
+}
+
+- (RFMessage *)_RFMessageManager_popNextMessageToDisplay {
     RFMessageDisplayPriority ctPriority = (RFMessageDisplayPriority)NSIntegerMin;
-    RFMessage *message;
-    for (RFMessage *obj in self.messageQueue) {
+    NSMutableArray *mq = self._RFMessageManager_messageQueue;
+    RFMessage *message = nil;
+    for (RFMessage *obj in mq) {
         if (obj.priority > ctPriority) {
             ctPriority = obj.priority;
             message = obj;
         }
     }
     if (message) {
-        [self.messageQueue removeObject:message];
+        [mq removeObject:message];
     }
     return message;
 }
 
 #pragma mark - For overwrite
-- (void)replaceMessage:(RFMessage *)displayingMessage withNewMessage:(RFMessage *)message {
+
+- (void)_RFMessageManager_replaceMessage:(RFMessage *)displayingMessage withNewMessage:(RFMessage *)message {
     if (displayingMessage == message) return;
-    self.displayingMessage = message;
+    self._RFMessageManager_displayingMessage = message;
+    [self replaceMessage:displayingMessage withNewMessage:message];
+}
+
+- (void)replaceMessage:(nullable __kindof RFMessage *)displayingMessage withNewMessage:(nullable __kindof RFMessage *)message {
+    // for overwrite
 }
 
 @end
 
+static NSString *const RFMessageIdentifierNotSet = @"_no_identifier_";
+
 @implementation RFMessage
-RFInitializingRootForNSObject
+
+- (instancetype)initWithIdentifier:(NSString *)identifier {
+    self = [super init];
+    if (self) {
+        if (RFMessageIdentifierNotSet != identifier) {
+            _identifier = identifier;
+        }
+        [self onInit];
+        [self performSelector:@selector(afterInit) withObject:self afterDelay:0];
+    }
+    return self;
+}
+
+- (instancetype)init {
+    return [self initWithIdentifier:RFMessageIdentifierNotSet];
+}
 
 - (void)onInit {
 }
 
 - (void)afterInit {
+    NSAssert(self.identifier, @"%@ don't have an identifier.", self);
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p; identifier = %@; priority = %d>", self.class, (void *)self,  self.identifier, (int)self.priority];
+    NSMutableArray *part = [NSMutableArray.alloc initWithCapacity:4];
+    [part addObject:[NSString stringWithFormat:@"identifier = %@", self.identifier]];
+    if (self.groupIdentifier) {
+        [part addObject:[NSString stringWithFormat:@"groupIdentifier = %@", self.groupIdentifier]];
+    }
+    [part addObject:[NSString stringWithFormat:@"priority = %d", (int)self.priority]];
+    return [NSString stringWithFormat:@"<%@: %p; %@>", self.class, (void *)self, [part componentsJoinedByString:@"; "]];
 }
 
 + (instancetype)messageWithConfiguration:(void (^)(__kindof RFMessage * _Nonnull))configBlock error:(NSError *__autoreleasing  _Nullable *)error {

@@ -11,10 +11,5 @@
 
 #import "RFMessageManager.h"
 
-@class RFNetworkActivityIndicatorMessage;
-
 @interface RFSVProgressMessageManager : RFMessageManager
-
-- (void)replaceMessage:(RFNetworkActivityIndicatorMessage *)displayingMessage withNewMessage:(RFNetworkActivityIndicatorMessage *)message;
-
 @end

@@ -1,19 +1,24 @@
 PODS:
   - RFInitializing (1.0.0)
+  - RFKit/Category/NSArray (1.7.1):
+    - RFKit/Foundation
   - RFKit/Foundation (1.7.1)
   - RFKit/Runtime (1.7.1):
     - RFKit/Foundation
   - RFMessageManager (0.1.0):
     - RFInitializing
+    - RFKit/Category/NSArray
     - RFKit/Runtime
     - RFMessageManager/SVProgressHUD (= 0.1.0)
     - RFMessageManager/UIAlertView (= 0.1.0)
   - RFMessageManager/SVProgressHUD (0.1.0):
     - RFInitializing
+    - RFKit/Category/NSArray
     - RFKit/Runtime
     - SVProgressHUD
   - RFMessageManager/UIAlertView (0.1.0):
     - RFInitializing
+    - RFKit/Category/NSArray
     - RFKit/Runtime
   - SVProgressHUD (2.2.5)
 
@@ -27,7 +32,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   RFInitializing: a90cf75405aba057dacaf8895a44681703a2fca5
   RFKit: 3c5f2a181777dfeb57b0ea1a004a8ce02d7445ee
-  RFMessageManager: 92866d094596a3ce98c0b71a7773eb82a3dc7b7a
+  RFMessageManager: 4bf6474791336179129ec747944e4476a98966a1
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
 PODFILE CHECKSUM: 2fdf21a2c7b4a0e28ac4bbc14b4c854cd09cb54e

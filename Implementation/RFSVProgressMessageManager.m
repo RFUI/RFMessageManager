@@ -47,6 +47,7 @@
             self.RFSVProgressMessageManager_autoDismissObserving = NO;
             [SVProgressHUD showProgress:message.progress status:stautsString];
         }
+        case RFNetworkActivityIndicatorStatusLoading:
         default: {
             [SVProgressHUD showWithStatus:stautsString];
         }

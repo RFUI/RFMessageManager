@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit'
 
   s.dependency 'RFKit/Runtime'
+  s.dependency 'RFKit/Category/NSArray'
   s.dependency 'RFInitializing'
 
   s.subspec 'SVProgressHUD' do |ss|
