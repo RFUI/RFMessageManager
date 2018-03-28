@@ -1,6 +1,5 @@
 
 #import "RFAlertViewMessageManager.h"
-#import "UIAlertView+RFKit.h"
 
 @implementation RFAlertViewMessageManager
 

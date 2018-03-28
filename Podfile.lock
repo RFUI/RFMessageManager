@@ -1,0 +1,35 @@
+PODS:
+  - RFInitializing (1.0.0)
+  - RFKit/Foundation (1.7.1)
+  - RFKit/Runtime (1.7.1):
+    - RFKit/Foundation
+  - RFMessageManager (0.1.0):
+    - RFInitializing
+    - RFKit/Runtime
+    - RFMessageManager/SVProgressHUD (= 0.1.0)
+    - RFMessageManager/UIAlertView (= 0.1.0)
+  - RFMessageManager/SVProgressHUD (0.1.0):
+    - RFInitializing
+    - RFKit/Runtime
+    - SVProgressHUD
+  - RFMessageManager/UIAlertView (0.1.0):
+    - RFInitializing
+    - RFKit/Runtime
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - RFMessageManager (from `.`)
+
+EXTERNAL SOURCES:
+  RFMessageManager:
+    :path: .
+
+SPEC CHECKSUMS:
+  RFInitializing: a90cf75405aba057dacaf8895a44681703a2fca5
+  RFKit: 3c5f2a181777dfeb57b0ea1a004a8ce02d7445ee
+  RFMessageManager: f5c5c367a20d117d1355000e41a5fbd182e91ed5
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: 2cfd39d07560bd29bd22bbdffddeb0552119dd74
+
+COCOAPODS: 1.4.0
