@@ -1,20 +1,24 @@
 
 #import "RFSVProgressMessageManager.h"
 #import "SVProgressHUD.h"
-#import "dout.h"
 
 @interface RFSVProgressMessageManager ()
-@property (strong, nonatomic) id dismissObserver;
+@property id RFSVProgressMessageManager_dismissObserver;
+@property (nonatomic) BOOL RFSVProgressMessageManager_autoDismissObserving;
 @end
 
 @implementation RFSVProgressMessageManager
 
+- (void)afterInit {
+    [super afterInit];
+    [SVProgressHUD setMinimumDismissTimeInterval:2];
+}
+
 - (void)dealloc {
-    [self deactiveAutoDismissObserver];
+    self.RFSVProgressMessageManager_autoDismissObserving = NO;
 }
 
 - (void)replaceMessage:(RFNetworkActivityIndicatorMessage *)displayingMessage withNewMessage:(RFNetworkActivityIndicatorMessage *)message {
-    _dout_info(@"Replace message %@ with %@", displayingMessage, message)
     [super replaceMessage:displayingMessage withNewMessage:message];
 
     if (!message) {
@@ -24,55 +28,47 @@
 
     NSString *stautsString = (message.title.length && message.message.length)? [NSString stringWithFormat:@"%@: %@", message.title, message.message] : [NSString stringWithFormat:@"%@%@", message.title?: @"", message.message?: @""];
 
-    SVProgressHUDMaskType maskType = message.modal? SVProgressHUDMaskTypeGradient : SVProgressHUDMaskTypeNone;
+    SVProgressHUDMaskType maskType = message.modal ? SVProgressHUDMaskTypeBlack : SVProgressHUDMaskTypeNone;
+    [SVProgressHUD setDefaultMaskType:maskType];
     switch (message.status) {
         case RFNetworkActivityIndicatorStatusSuccess: {
-            [self activeAutoDismissObserver];
+            self.RFSVProgressMessageManager_autoDismissObserving = YES;
             [SVProgressHUD showSuccessWithStatus:stautsString];
             break;
         }
-
         case RFNetworkActivityIndicatorStatusFail: {
-            [self activeAutoDismissObserver];
+            self.RFSVProgressMessageManager_autoDismissObserving = YES;
             [SVProgressHUD showErrorWithStatus:stautsString];
             break;
         }
         case RFNetworkActivityIndicatorStatusDownloading:
         case RFNetworkActivityIndicatorStatusUploading: {
-            [self deactiveAutoDismissObserver];
-            [SVProgressHUD showProgress:message.progress status:stautsString maskType:maskType];
+            self.RFSVProgressMessageManager_autoDismissObserving = NO;
+            [SVProgressHUD showProgress:message.progress status:stautsString];
         }
         default: {
-            if (stautsString.length) {
-                [SVProgressHUD showWithStatus:stautsString maskType:maskType];
-            }
-            else {
-                [SVProgressHUD showWithMaskType:maskType];
-            }
+            [SVProgressHUD showWithStatus:stautsString];
         }
     }
-
-    _dout_info(@"After replacing, self = %@", self);
 }
 
-- (void)activeAutoDismissObserver {
-    if (self.dismissObserver) return;
-
-    @weakify(self);
-    self.dismissObserver = [[NSNotificationCenter defaultCenter] addObserverForName:SVProgressHUDWillDisappearNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-        @strongify(self);
-        _dout_info(@"Receive SVProgressHUDWillDisappearNotification")
-        if (self.displayingMessage) {
-            RFAssert(self.displayingMessage.identifier, @"empty string");
-            [self hideWithIdentifier:self.displayingMessage.identifier];
-        }
-    }];
-}
-
-- (void)deactiveAutoDismissObserver {
-    if (self.dismissObserver) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self.dismissObserver];
-        self.dismissObserver = nil;
+- (void)setRFSVProgressMessageManager_autoDismissObserving:(BOOL)observing {
+    if (_RFSVProgressMessageManager_autoDismissObserving == observing) return;
+    if (_RFSVProgressMessageManager_autoDismissObserving) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self.RFSVProgressMessageManager_dismissObserver];
+        self.RFSVProgressMessageManager_dismissObserver = nil;
+    }
+    _RFSVProgressMessageManager_autoDismissObserving = observing;
+    if (observing) {
+        @weakify(self);
+        self.RFSVProgressMessageManager_dismissObserver = [[NSNotificationCenter defaultCenter] addObserverForName:SVProgressHUDWillDisappearNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+            @strongify(self);
+            RFNetworkActivityIndicatorMessage *msg = self.displayingMessage;
+            if (msg) {
+                RFAssert(msg.identifier, @"message identifier must not be nil");
+                [self hideWithIdentifier:msg.identifier];
+            }
+        }];
     }
 }
 

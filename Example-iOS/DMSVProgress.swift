@@ -31,9 +31,10 @@ class DMSVProgressViewController: UITableViewController {
             messager.show(msg)
             
         case rowLoadingModal:
-            let msg = RFNetworkActivityIndicatorMessage(identifier: "load2", title: "load2", message: "this message won't auto dismiss", status: .loading)
+            let msg = RFNetworkActivityIndicatorMessage(identifier: "load2", title: "load2", message: "dismiss after 3s", status: .loading)
             msg.modal = true
             messager.show(msg)
+            perform(#selector(hideMessage(identifier:)), with: "load2", afterDelay: 3)
             
         case rowSuccess:
             let msg = RFNetworkActivityIndicatorMessage(identifier: "success", title: nil, message: "success", status: .success)
@@ -52,6 +53,10 @@ class DMSVProgressViewController: UITableViewController {
         }
         print(messager)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    @objc func hideMessage(identifier: String) {
+        messager.hide(withIdentifier: identifier)
     }
 }
 
