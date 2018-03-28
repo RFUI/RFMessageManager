@@ -1,14 +1,11 @@
 /*!
-    RFMessageManager (RFDisplay)
-    RFUI
-
-    Copyright (c) 2014, 2016 BB9z
-    https://github.com/RFUI/Alpha
-
-    The MIT License (MIT)
-    http://www.opensource.org/licenses/mit-license.php
-
-    Alpha
+ RFMessageManager (RFDisplay)
+ 
+ Copyright (c) 2014, 2016, 2018 BB9z
+ https://github.com/RFUI/Alpha
+ 
+ The MIT License (MIT)
+ http://www.opensource.org/licenses/mit-license.php
  */
 
 #import "RFMessageManager.h"
@@ -22,15 +19,15 @@
  @param timeInterval 0 不自动隐藏
  @param identifier 标示，新加入的显示请求会替换掉排队中的有着相同标示的请求。为 nil 会被转换为 @""。
  */
-- (void)showWithTitle:(NSString *)title message:(NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal priority:(RFNetworkActivityIndicatorMessagePriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(NSString *)identifier groupIdentifier:(NSString *)groupIdentifier userInfo:(NSDictionary *)userInfo;
+- (void)showWithTitle:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal priority:(RFNetworkActivityIndicatorMessagePriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(nullable NSString *)identifier groupIdentifier:(nullable NSString *)groupIdentifier userInfo:(nullable NSDictionary *)userInfo;
 
 /** 显示请求进度
 
  @param progress 0～1，小于 0 表示进行中但无具体进度
  */
-- (void)showProgress:(float)progress title:(NSString *)title message:(NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal identifier:(NSString *)identifier userInfo:(NSDictionary *)userInfo;
+- (void)showProgress:(float)progress title:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal identifier:(nullable NSString *)identifier userInfo:(nullable NSDictionary *)userInfo;
 
-- (void)alertError:(NSError *)error title:(NSString *)title;
-- (void)alertErrorWithMessage:(NSString *)message;
+- (void)alertError:(nullable NSError *)error title:(nullable NSString *)title;
+- (void)alertErrorWithMessage:(nullable NSString *)message;
 
 @end

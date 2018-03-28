@@ -1,14 +1,11 @@
 /*!
-    RFMessageManager
-    RFUI
-
-    Copyright (c) 2014, 2016 BB9z
-    https://github.com/RFUI/Alpha
-
-    The MIT License (MIT)
-    http://www.opensource.org/licenses/mit-license.php
-
-    Alpha
+ RFMessageManager
+ 
+ Copyright (c) 2014, 2016, 2018 BB9z
+ https://github.com/RFUI/RFMessageManager
+ 
+ The MIT License (MIT)
+ http://www.opensource.org/licenses/mit-license.php
  */
 
 #import "RFRuntime.h"
@@ -47,19 +44,19 @@ typedef NS_ENUM(NSInteger, RFNetworkActivityIndicatorMessagePriority) {
     RFInitializing
 >
 
-- (void)showMessage:(RFNetworkActivityIndicatorMessage *)message;
+- (void)showMessage:(nonnull RFNetworkActivityIndicatorMessage *)message;
 
-@property (strong, nonatomic) RFNetworkActivityIndicatorMessage *displayingMessage;
+@property (nullable) RFNetworkActivityIndicatorMessage *displayingMessage;
 
 /**
  @param identifier nil 会取消所有显示，如果 show 时的 identifier 未传，应使用 @""
  */
-- (void)hideWithIdentifier:(NSString *)identifier;
+- (void)hideWithIdentifier:(nullable NSString *)identifier;
 /** 隐藏一组
  
  @param groupIdentifier nil 会取消所有显示，如果 show 时的 identifier 未传，应使用 @""
  */
-- (void)hideWithGroupIdentifier:(NSString *)groupIdentifier;
+- (void)hideWithGroupIdentifier:(nullable NSString *)groupIdentifier;
 
 #pragma mark - Methods for overwrite.
 /** 
@@ -69,24 +66,24 @@ typedef NS_ENUM(NSInteger, RFNetworkActivityIndicatorMessagePriority) {
  @param displayingMessage 目前显示的信息
  @param message 将要显示的信息
  */
-- (void)replaceMessage:(RFNetworkActivityIndicatorMessage *)displayingMessage withNewMessage:(RFNetworkActivityIndicatorMessage *)message;
+- (void)replaceMessage:(nullable RFNetworkActivityIndicatorMessage *)displayingMessage withNewMessage:(nullable RFNetworkActivityIndicatorMessage *)message;
 
 @end
 
 
 @interface RFNetworkActivityIndicatorMessage : NSObject
-@property (copy, nonatomic) NSString *identifier;
-@property (copy, nonatomic) NSString *groupIdentifier;
-@property (copy, nonatomic) NSString *title;
-@property (copy, nonatomic) NSString *message;
-@property (assign, nonatomic) RFNetworkActivityIndicatorStatus status;
+@property (nonnull, copy) NSString *identifier;
+@property (nullable, copy) NSString *groupIdentifier;
+@property (nullable, copy) NSString *title;
+@property (nullable, copy) NSString *message;
+@property RFNetworkActivityIndicatorStatus status;
 
-@property (assign, nonatomic) RFNetworkActivityIndicatorMessagePriority priority;
-@property (assign, nonatomic) BOOL modal;
-@property (assign, nonatomic) float progress;
-@property (assign, nonatomic) NSTimeInterval displayTimeInterval;
+@property RFNetworkActivityIndicatorMessagePriority priority;
+@property BOOL modal;
+@property float progress;
+@property NSTimeInterval displayTimeInterval;
 
-@property (strong, nonatomic) NSDictionary *userInfo;
+@property (nullable) NSDictionary *userInfo;
 
-- (instancetype)initWithIdentifier:(NSString *)identifier title:(NSString *)title message:(NSString *)message status:(RFNetworkActivityIndicatorStatus)status;
+- (nonnull instancetype)initWithIdentifier:(nonnull NSString *)identifier title:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status;
 @end
