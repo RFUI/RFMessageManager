@@ -1,6 +1,7 @@
 
 #import "RFSVProgressMessageManager.h"
 #import "SVProgressHUD.h"
+#import "RFNetworkActivityIndicatorMessage.h"
 
 @interface RFSVProgressMessageManager ()
 @property id RFSVProgressMessageManager_dismissObserver;

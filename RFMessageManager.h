@@ -11,28 +11,20 @@
 #import "RFRuntime.h"
 #import "RFInitializing.h"
 
-typedef NS_ENUM(short, RFNetworkActivityIndicatorStatus) {
-    RFNetworkActivityIndicatorStatusLoading = 0,
-    RFNetworkActivityIndicatorStatusSuccess,
-    RFNetworkActivityIndicatorStatusFail,
+/**
+ RFMessageDisplayPriority
 
-    RFNetworkActivityIndicatorStatusDownloading,
-    RFNetworkActivityIndicatorStatusUploading
-};
-
-/**  RFNetworkActivityIndicatorMessagePriority
-
- @enum RFNetworkActivityIndicatorMessagePriorityQueue 排队显示
- @enum RFNetworkActivityIndicatorMessagePriorityHigh 不改变队列，立即显示
- @enum RFNetworkActivityIndicatorMessagePriorityReset 立即显示，同时清空队列
+ @enum RFMessageDisplayPriorityQueue 排队显示
+ @enum RFMessageDisplayPriorityHigh 不改变队列，立即显示
+ @enum RFMessageDisplayPriorityReset 立即显示，同时清空队列
  */
-typedef NS_ENUM(NSInteger, RFNetworkActivityIndicatorMessagePriority) {
-    RFNetworkActivityIndicatorMessagePriorityQueue = 0,
-    RFNetworkActivityIndicatorMessagePriorityHigh = 750,
-    RFNetworkActivityIndicatorMessagePriorityReset = 1000
+typedef NS_ENUM(NSInteger, RFMessageDisplayPriority) {
+    RFMessageDisplayPriorityQueue = 0,
+    RFMessageDisplayPriorityHigh = 750,
+    RFMessageDisplayPriorityReset = 1000
 };
 
-@class RFNetworkActivityIndicatorMessage;
+@class RFMessage;
 
 /**
  网络请求加载状态管理器
@@ -44,9 +36,9 @@ typedef NS_ENUM(NSInteger, RFNetworkActivityIndicatorMessagePriority) {
     RFInitializing
 >
 
-- (void)showMessage:(nonnull RFNetworkActivityIndicatorMessage *)message;
+- (void)showMessage:(nonnull __kindof RFMessage *)message;
 
-@property (nullable) RFNetworkActivityIndicatorMessage *displayingMessage;
+@property (nullable) __kindof RFMessage *displayingMessage;
 
 /**
  @param identifier nil 会取消所有显示，如果 show 时的 identifier 未传，应使用 @""
@@ -66,24 +58,21 @@ typedef NS_ENUM(NSInteger, RFNetworkActivityIndicatorMessagePriority) {
  @param displayingMessage 目前显示的信息
  @param message 将要显示的信息
  */
-- (void)replaceMessage:(nullable RFNetworkActivityIndicatorMessage *)displayingMessage withNewMessage:(nullable RFNetworkActivityIndicatorMessage *)message;
+- (void)replaceMessage:(nullable __kindof RFMessage *)displayingMessage withNewMessage:(nullable __kindof RFMessage *)message;
 
 @end
 
-
-@interface RFNetworkActivityIndicatorMessage : NSObject
+/**
+ 
+ */
+@interface RFMessage: NSObject <
+    RFInitializing
+>
 @property (nonnull, copy) NSString *identifier;
 @property (nullable, copy) NSString *groupIdentifier;
-@property (nullable, copy) NSString *title;
-@property (nullable, copy) NSString *message;
-@property RFNetworkActivityIndicatorStatus status;
+@property RFMessageDisplayPriority priority;
 
-@property RFNetworkActivityIndicatorMessagePriority priority;
-@property BOOL modal;
-@property float progress;
-@property NSTimeInterval displayTimeInterval;
++ (nullable instancetype)messageWithConfiguration:(NS_NOESCAPE void (^__nullable)(__kindof RFMessage *__nonnull instance))configBlock error:(NSError *__nullable *__nullable)error;
 
-@property (nullable) NSDictionary *userInfo;
-
-- (nonnull instancetype)initWithIdentifier:(nonnull NSString *)identifier title:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status;
+- (BOOL)validateConfigurationError:(NSError *__nullable *__nonnull)error;
 @end

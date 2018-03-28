@@ -19,30 +19,40 @@
     dout_error(@"Error: %@ (%d), URL:%@", error.domain, (int)error.code, error.userInfo[NSURLErrorFailingURLErrorKey]);
 #endif
 
-    [self showWithTitle:title?: @"不能完成请求" message:message status:RFNetworkActivityIndicatorStatusFail modal:NO priority:RFNetworkActivityIndicatorMessagePriorityHigh autoHideAfterTimeInterval:0 identifier:nil groupIdentifier:nil userInfo:nil];
+    [self showWithTitle:title message:message status:RFNetworkActivityIndicatorStatusFail modal:NO priority:RFMessageDisplayPriorityHigh autoHideAfterTimeInterval:0 identifier:nil groupIdentifier:nil userInfo:nil];
 }
 
-- (void)showWithTitle:(NSString *)title message:(NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal priority:(RFNetworkActivityIndicatorMessagePriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(NSString *)identifier groupIdentifier:(NSString *)groupIdentifier userInfo:(NSDictionary *)userInfo {
-    RFNetworkActivityIndicatorMessage *obj = [[RFNetworkActivityIndicatorMessage alloc] initWithIdentifier:identifier?: @"" title:title message:message status:status];
-    obj.priority = priority;
-    obj.groupIdentifier = groupIdentifier? : @"";
-    obj.modal = modal;
-    obj.userInfo = userInfo;
-    obj.displayTimeInterval = timeInterval;
-
+- (void)showWithTitle:(NSString *)title message:(NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal priority:(RFMessageDisplayPriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(NSString *)identifier groupIdentifier:(NSString *)groupIdentifier userInfo:(NSDictionary *)userInfo {
+    
+    RFNetworkActivityIndicatorMessage *obj = [RFNetworkActivityIndicatorMessage messageWithConfiguration:^(RFNetworkActivityIndicatorMessage *instance) {
+        instance.identifier = identifier?: @"";
+        instance.groupIdentifier = groupIdentifier?: @"";
+        instance.title = title;
+        instance.message = message;
+        instance.modal = modal;
+        instance.status = status;
+        instance.priority = priority;
+        instance.userInfo = userInfo;
+        instance.displayTimeInterval = timeInterval;
+    } error:nil];
     [self showMessage:obj];
 }
 
 - (void)showProgress:(float)progress title:(NSString *)title message:(NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal identifier:(NSString *)identifier userInfo:(NSDictionary *)userInfo {
-    RFNetworkActivityIndicatorMessage *obj = [[RFNetworkActivityIndicatorMessage alloc] initWithIdentifier:identifier?: @"" title:title message:message status:status];
-    obj.modal = modal;
-    obj.progress = progress;
-    obj.userInfo = userInfo;
+    RFNetworkActivityIndicatorMessage *obj = [RFNetworkActivityIndicatorMessage messageWithConfiguration:^(RFNetworkActivityIndicatorMessage *instance) {
+        instance.identifier = identifier?: @"";
+        instance.title = title;
+        instance.message = message;
+        instance.modal = modal;
+        instance.progress = progress;
+        instance.status = status;
+        instance.userInfo = userInfo;
+    } error:nil];
     [self showMessage:obj];
 }
 
 - (void)alertErrorWithMessage:(NSString *)message {
-    [self showWithTitle:nil message:message status:RFNetworkActivityIndicatorStatusFail modal:NO priority:RFNetworkActivityIndicatorMessagePriorityHigh autoHideAfterTimeInterval:0 identifier:nil groupIdentifier:nil userInfo:nil];
+    [self showWithTitle:nil message:message status:RFNetworkActivityIndicatorStatusFail modal:NO priority:RFMessageDisplayPriorityHigh autoHideAfterTimeInterval:0 identifier:nil groupIdentifier:nil userInfo:nil];
 }
 
 @end

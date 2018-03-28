@@ -9,6 +9,7 @@
  */
 
 #import "RFMessageManager.h"
+#import "RFNetworkActivityIndicatorMessage.h"
 
 @interface RFMessageManager (RFDisplay)
 
@@ -19,7 +20,7 @@
  @param timeInterval 0 不自动隐藏
  @param identifier 标示，新加入的显示请求会替换掉排队中的有着相同标示的请求。为 nil 会被转换为 @""。
  */
-- (void)showWithTitle:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal priority:(RFNetworkActivityIndicatorMessagePriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(nullable NSString *)identifier groupIdentifier:(nullable NSString *)groupIdentifier userInfo:(nullable NSDictionary *)userInfo;
+- (void)showWithTitle:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal priority:(RFMessageDisplayPriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(nullable NSString *)identifier groupIdentifier:(nullable NSString *)groupIdentifier userInfo:(nullable NSDictionary *)userInfo;
 
 /** 显示请求进度
 

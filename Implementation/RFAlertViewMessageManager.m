@@ -1,5 +1,6 @@
 
 #import "RFAlertViewMessageManager.h"
+#import "RFNetworkActivityIndicatorMessage.h"
 
 @implementation RFAlertViewMessageManager
 

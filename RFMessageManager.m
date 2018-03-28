@@ -3,14 +3,13 @@
 #import "dout.h"
 
 @interface RFMessageManager ()
-@property (strong, nonatomic) NSMutableArray *messageQueue;
+@property (nonatomic) NSMutableArray<__kindof RFMessage *> *messageQueue;
 @end
 
 @implementation RFMessageManager
 RFInitializingRootForNSObject
 
 - (void)onInit {
-    self.messageQueue = [NSMutableArray array];
 }
 
 - (void)afterInit {
@@ -18,6 +17,12 @@ RFInitializingRootForNSObject
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@: %p; displayingMessage = %@; messageQueue = %@>", self.class, (void *)self, self.displayingMessage, self.messageQueue];
+}
+
+- (NSMutableArray<__kindof RFMessage *> *)messageQueue {
+    if (_messageQueue) return _messageQueue;
+    _messageQueue = [NSMutableArray arrayWithCapacity:8];
+    return _messageQueue;
 }
 
 - (void)hideWithGroupIdentifier:(NSString *)identifier {
@@ -29,7 +34,7 @@ RFInitializingRootForNSObject
         return;
     }
 
-    [self.messageQueue filterUsingPredicate:[NSPredicate predicateWithFormat:@"%K != %@", @keypathClassInstance(RFNetworkActivityIndicatorMessage, groupIdentifier), identifier]];
+    [self.messageQueue filterUsingPredicate:[NSPredicate predicateWithFormat:@"%K != %@", @keypathClassInstance(RFMessage, groupIdentifier), identifier]];
 
     if ([identifier isEqualToString:self.displayingMessage.groupIdentifier]) {
         [self hideWithIdentifier:self.displayingMessage.identifier];
@@ -39,7 +44,7 @@ RFInitializingRootForNSObject
 }
 
 #pragma mark - Queue Manage
-- (void)showMessage:(RFNetworkActivityIndicatorMessage *)message {
+- (void)showMessage:(RFMessage *)message {
     _dout_info(@"Show message: %@", message)
     NSParameterAssert(message.identifier);
 
@@ -49,12 +54,12 @@ RFInitializingRootForNSObject
         return;
     }
 
-    if (message.priority >= RFNetworkActivityIndicatorMessagePriorityReset) {
+    if (message.priority >= RFMessageDisplayPriorityReset) {
         [self.messageQueue removeAllObjects];
         // Continue
     }
 
-    if (message.priority >= RFNetworkActivityIndicatorMessagePriorityHigh) {
+    if (message.priority >= RFMessageDisplayPriorityHigh) {
         [self replaceMessage:self.displayingMessage withNewMessage:message];
         return;
     }
@@ -62,7 +67,7 @@ RFInitializingRootForNSObject
     // Needs update queue, just add or replace
     NSUInteger ix = [self.messageQueue indexOfObject:message];
     if (ix != NSNotFound) {
-        RFNetworkActivityIndicatorMessage *messageInQueue = (self.messageQueue)[ix];
+        RFMessage *messageInQueue = (self.messageQueue)[ix];
         if (message.priority >= messageInQueue.priority) {
             // Readd it
             [self.messageQueue removeObject:message];
@@ -85,7 +90,7 @@ RFInitializingRootForNSObject
         return;
     }
 
-    RFNetworkActivityIndicatorMessage *toRemove = [RFNetworkActivityIndicatorMessage new];
+    RFMessage *toRemove = [RFMessage new];
     toRemove.identifier = identifier;
     [self.messageQueue removeObject:toRemove];
 
@@ -95,10 +100,10 @@ RFInitializingRootForNSObject
     _dout_info(@"After hideWithIdentifier, self = %@", self);
 }
 
-- (RFNetworkActivityIndicatorMessage *)popNextMessageToDisplay {
-    RFNetworkActivityIndicatorMessagePriority ctPriority = (RFNetworkActivityIndicatorMessagePriority)NSIntegerMin;
-    RFNetworkActivityIndicatorMessage *message;
-    for (RFNetworkActivityIndicatorMessage *obj in self.messageQueue) {
+- (RFMessage *)popNextMessageToDisplay {
+    RFMessageDisplayPriority ctPriority = (RFMessageDisplayPriority)NSIntegerMin;
+    RFMessage *message;
+    for (RFMessage *obj in self.messageQueue) {
         if (obj.priority > ctPriority) {
             ctPriority = obj.priority;
             message = obj;
@@ -111,45 +116,56 @@ RFInitializingRootForNSObject
 }
 
 #pragma mark - For overwrite
-- (void)replaceMessage:(RFNetworkActivityIndicatorMessage *)displayingMessage withNewMessage:(RFNetworkActivityIndicatorMessage *)message {
+- (void)replaceMessage:(RFMessage *)displayingMessage withNewMessage:(RFMessage *)message {
     if (displayingMessage == message) return;
     self.displayingMessage = message;
 }
 
 @end
 
-@implementation RFNetworkActivityIndicatorMessage
+@implementation RFMessage
+RFInitializingRootForNSObject
+
+- (void)onInit {
+}
+
+- (void)afterInit {
+}
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p; title = %@; message = %@; identifier = %@; priority = %d>", self.class, (void *)self, self.title, self.message, self.identifier, (int)self.priority];
+    return [NSString stringWithFormat:@"<%@: %p; identifier = %@; priority = %d>", self.class, (void *)self,  self.identifier, (int)self.priority];
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _identifier = @"";
++ (instancetype)messageWithConfiguration:(void (^)(__kindof RFMessage * _Nonnull))configBlock error:(NSError *__autoreleasing  _Nullable *)error {
+    RFMessage *instance = self.new;
+    if (configBlock) {
+        configBlock(instance);
     }
-    return self;
+    NSError *e = nil;
+    if (![instance validateConfigurationError:&e]) {
+        if (error) {
+            *error = e;
+        }
+        return nil;
+    }
+    return instance;
 }
 
-- (instancetype)initWithIdentifier:(NSString *)identifier title:(NSString *)title message:(NSString *)message status:(RFNetworkActivityIndicatorStatus)status {
-    self = [self init];
-    if (self) {
-        _identifier = identifier;
-        _title = title;
-        _message = message;
-        _status = status;
+- (BOOL)validateConfigurationError:(NSError *__autoreleasing  _Nullable *)error {
+    if (!self.identifier) {
+        *error = [NSError errorWithDomain:@"RFMessage" code:1 userInfo:@{ NSLocalizedDescriptionKey : @"RFMessage must have an identifier." }];
+        return NO;
     }
-    return self;
+    return YES;
 }
 
 - (BOOL)isEqual:(id)object {
-    if (![object isKindOfClass:[RFNetworkActivityIndicatorMessage class]]) return NO;
-    return self.hash == [object hash];
+    if (![object isKindOfClass:self.class]) return NO;
+    return [self.identifier isEqualToString:[(RFMessage *)object identifier]];
 }
 
 - (NSUInteger)hash {
-    return [self.identifier hash];
+    return self.identifier.hash;
 }
 
 @end

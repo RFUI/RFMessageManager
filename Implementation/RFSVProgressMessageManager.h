@@ -9,8 +9,12 @@
  http://www.opensource.org/licenses/mit-license.php
  */
 
-#import "RFRuntime.h"
 #import "RFMessageManager.h"
 
+@class RFNetworkActivityIndicatorMessage;
+
 @interface RFSVProgressMessageManager : RFMessageManager
+
+- (void)replaceMessage:(RFNetworkActivityIndicatorMessage *)displayingMessage withNewMessage:(RFNetworkActivityIndicatorMessage *)message;
+
 @end
