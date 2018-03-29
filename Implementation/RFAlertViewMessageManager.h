@@ -10,7 +10,15 @@
  */
 
 #import "RFMessageManager.h"
+#import "RFNetworkActivityIndicatorMessage.h"
 
+/**
+ RFMessageManager display using UIAlertView.
+ 
+ All message object should be RFNetworkActivityIndicatorMessage.
+ 
+ - Only display message which status is RFNetworkActivityIndicatorStatusFail.
+ */
 @interface RFAlertViewMessageManager : RFMessageManager <
     UIAlertViewDelegate
 >
