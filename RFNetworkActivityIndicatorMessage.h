@@ -30,5 +30,5 @@ typedef NS_ENUM(short, RFNetworkActivityIndicatorStatus) {
 
 @property (nullable) NSDictionary *userInfo;
 
-- (nonnull instancetype)initWithIdentifier:(nonnull NSString *)identifier title:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status API_DEPRECATED_WITH_REPLACEMENT("messageWithConfiguration:error:", macos(10.4, 10.6), watchos(2.0, 3.0));
+- (nonnull instancetype)initWithIdentifier:(nonnull NSString *)identifier title:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status API_DEPRECATED_WITH_REPLACEMENT("messageWithConfiguration:error:", macos(10.6, 10.13), ios(2.0, 11.0), watchos(2.0, 4.0), tvos(9.0, 11.0));
 @end

@@ -5,3 +5,5 @@
 #import "RFMessageManager.h"
 #import "RFMessageManager+RFDisplay.h"
 #import "RFSVProgressMessageManager.h"
+
+#import "MBNavigationItem.h"

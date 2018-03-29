@@ -152,8 +152,16 @@
                             <outlet property="delegate" destination="xZX-TH-DhJ" id="huH-c9-u3M"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="SVProgress Operation" id="jgZ-Ap-lby"/>
+                    <navigationItem key="navigationItem" title="SVProgress Operation" id="dBX-g8-dT6" customClass="MBNavigationItem">
+                        <barButtonItem key="rightBarButtonItem" title="Queue" id="tvQ-nT-Y0t">
+                            <connections>
+                                <action selector="onQueueMode:" destination="xZX-TH-DhJ" id="wms-EP-lhK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="defaultNavigationItem" destination="dBX-g8-dT6" id="VII-fW-SKv"/>
+                        <outlet property="queueNavigationItem" destination="NU0-vN-pUt" id="UYZ-jn-Yyr"/>
                         <outlet property="rowFail" destination="VMp-Ga-ZPN" id="z1h-8c-MnX"/>
                         <outlet property="rowHide" destination="TG9-2O-3CJ" id="Acj-LO-HQe"/>
                         <outlet property="rowLoading" destination="KJZ-Wf-TPB" id="rvm-1G-QTr"/>
@@ -162,6 +170,18 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpg-6L-xIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationItem title="Queue Mode" id="NU0-vN-pUt">
+                    <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CWT-1H-dvF">
+                        <connections>
+                            <action selector="onExitQueueMode:" destination="xZX-TH-DhJ" id="Tqt-pG-DbG"/>
+                        </connections>
+                    </barButtonItem>
+                    <barButtonItem key="rightBarButtonItem" systemItem="done" id="HsS-wS-3E2">
+                        <connections>
+                            <action selector="onExecuteQueue:" destination="xZX-TH-DhJ" id="FH3-U0-02d"/>
+                        </connections>
+                    </barButtonItem>
+                </navigationItem>
             </objects>
             <point key="canvasLocation" x="1246" y="148"/>
         </scene>

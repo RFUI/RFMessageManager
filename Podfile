@@ -6,3 +6,8 @@ target 'Example-iOS' do
     target 'Test-iOS' do
     end
 end
+
+target 'Test-macOS' do
+    platform :osx, '10.8'
+    pod 'RFMessageManager', :path => '.'
+end

@@ -17,6 +17,40 @@ class DMSVProgressViewController: UITableViewController {
         messager.hide(withIdentifier: nil)
     }
     
+    // MARK: -
+    
+    @IBOutlet var defaultNavigationItem: MBNavigationItem!
+    @IBOutlet var queueNavigationItem: UINavigationItem!
+    
+    var queuedMessage: [ RFMessage ] = []
+    var isQueueMode: Bool = false {
+        didSet {
+            if isQueueMode {
+                defaultNavigationItem.apply(queueNavigationItem, animated: true)
+            }
+            else {
+                defaultNavigationItem.restore(animated: true)
+            }
+        }
+    }
+    @IBAction func onQueueMode(_ sender: Any) {
+        queuedMessage.removeAll()
+        isQueueMode = true
+    }
+    @IBAction func onExitQueueMode(_ sender: Any) {
+        queuedMessage.removeAll()
+        isQueueMode = false
+    }
+    @IBAction func onExecuteQueue(_ sender: Any) {
+        for m in queuedMessage {
+            messager.show(m)
+        }
+        queuedMessage.removeAll()
+        isQueueMode = false
+    }
+    
+    // MARK: -
+    
     @IBOutlet weak var rowLoading: UITableViewCell!
     @IBOutlet weak var rowLoadingModal: UITableViewCell!
     @IBOutlet weak var rowSuccess: UITableViewCell!
@@ -25,24 +59,27 @@ class DMSVProgressViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: UITableViewCell! = tableView.cellForRow(at: indexPath)
+        var msg: RFNetworkActivityIndicatorMessage?
         switch cell {
         case rowLoading:
-            let msg = RFNetworkActivityIndicatorMessage(identifier: "load1", title: "load1", message: "this message won't auto dismiss", status: .loading)
-            messager.show(msg)
+            if isQueueMode {
+                msg = RFNetworkActivityIndicatorMessage(identifier: "load1", title: "load1", message: "dismiss after 2s", status: .loading)
+                msg?.displayTimeInterval = 2
+            }
+            else {
+                msg = RFNetworkActivityIndicatorMessage(identifier: "load1", title: "load1", message: "this message won't auto dismiss", status: .loading)
+            }
             
         case rowLoadingModal:
-            let msg = RFNetworkActivityIndicatorMessage(identifier: "load2", title: "load2", message: "dismiss after 3s", status: .loading)
-            msg.modal = true
-            messager.show(msg)
-            perform(#selector(hideMessage(identifier:)), with: "load2", afterDelay: 3)
+            msg = RFNetworkActivityIndicatorMessage(identifier: "load2", title: "load2", message: "dismiss after 3s", status: .loading)
+            msg?.modal = true
+            msg?.displayTimeInterval = 3
             
         case rowSuccess:
-            let msg = RFNetworkActivityIndicatorMessage(identifier: "success", title: nil, message: "success", status: .success)
-            messager.show(msg)
+            msg = RFNetworkActivityIndicatorMessage(identifier: "success", title: nil, message: "success", status: .success)
             
         case rowFail:
-            let msg = RFNetworkActivityIndicatorMessage(identifier: "fail", title: nil, message: "fail", status: .fail)
-            messager.show(msg)
+            msg = RFNetworkActivityIndicatorMessage(identifier: "fail", title: "", message: "fail", status: .fail)
             
         case rowHide:
             if let dm = messager.displayingMessage {
@@ -51,7 +88,16 @@ class DMSVProgressViewController: UITableViewController {
             
         default: break
         }
-        print(messager)
+        
+        if msg != nil {
+            if isQueueMode {
+                queuedMessage.append(msg!)
+            }
+            else {
+                messager.show(msg!)
+                print(messager)
+            }
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

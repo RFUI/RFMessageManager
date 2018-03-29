@@ -50,6 +50,10 @@
         case RFNetworkActivityIndicatorStatusLoading:
         default: {
             [SVProgressHUD showWithStatus:stautsString];
+            if (message.displayTimeInterval > 0) {
+                self.RFSVProgressMessageManager_autoDismissObserving = YES;
+                [SVProgressHUD dismissWithDelay:message.displayTimeInterval];
+            }
         }
     }
 }
@@ -63,7 +67,7 @@
     _RFSVProgressMessageManager_autoDismissObserving = observing;
     if (observing) {
         @weakify(self);
-        self.RFSVProgressMessageManager_dismissObserver = [[NSNotificationCenter defaultCenter] addObserverForName:SVProgressHUDWillDisappearNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        self.RFSVProgressMessageManager_dismissObserver = [[NSNotificationCenter defaultCenter] addObserverForName:SVProgressHUDDidDisappearNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
             @strongify(self);
             RFNetworkActivityIndicatorMessage *msg = self.displayingMessage;
             if (msg) {

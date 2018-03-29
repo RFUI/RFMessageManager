@@ -9,7 +9,10 @@
 
 - (NSString *)title {
     if (_title) return _title;
-    return @"不能完成请求";
+    if (self.status == RFNetworkActivityIndicatorStatusFail) {
+        return @"不能完成请求";
+    }
+    return nil;
 }
 
 - (instancetype)init {
