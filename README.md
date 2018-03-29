@@ -8,5 +8,5 @@ An Abstract Message Manager.
 ## CocoaPods Install
 
 ```ruby
-pod 'RFKit', :git => 'https://github.com/RFUI/RFMessageManager.git', :subspecs => ['Manager', 'SVProgressHUD']
+pod 'RFMessageManager', :git => 'https://github.com/RFUI/RFMessageManager.git', :subspecs => ['Manager', 'SVProgressHUD']
 ```
