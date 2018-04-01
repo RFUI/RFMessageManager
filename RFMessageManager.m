@@ -73,6 +73,18 @@ RFInitializingRootForNSObject
     }
 }
 
+- (void)hideMessage:(__kindof RFMessage *)message {
+    if (!message) return;
+    RFMessage *dm = self._RFMessageManager_displayingMessage;
+    if (dm == message) {
+        [self _RFMessageManager_replaceMessage:dm withNewMessage:self._RFMessageManager_popNextMessageToDisplay];
+        return;
+    }
+    else {
+        [self._RFMessageManager_messageQueue removeObject:message];
+    }
+}
+
 - (void)hideWithIdentifier:(NSString *)identifier {
     RFMessage *dm = self._RFMessageManager_displayingMessage;
     if (!identifier) {

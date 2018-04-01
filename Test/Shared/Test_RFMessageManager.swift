@@ -24,6 +24,35 @@ class Test_RFMessageManager: XCTestCase {
         manager.show(m3)
         XCTAssertEqual(manager.displayingMessage, m1)
         XCTAssertEqual(manager.queuedMessages, [m2, m3])
+        
+        manager.hide(m2) // in queue
+        XCTAssertEqual(manager.displayingMessage, m1)
+        XCTAssertEqual(manager.queuedMessages, [m3])
+
+        manager.hide(m1) // displaying
+        XCTAssertEqual(manager.displayingMessage, m3)
+        XCTAssertEqual(manager.queuedMessages, [])
+
+        manager.show(m2)
+        manager.show(m1)
+        XCTAssertEqual(manager.displayingMessage, m3)
+        XCTAssertEqual(manager.queuedMessages, [m2, m1])
+
+        manager.hide(nil)
+        XCTAssertEqual(manager.displayingMessage, m3)
+        XCTAssertEqual(manager.queuedMessages, [m2, m1])
+    }
+    
+    func testHideWithID() {
+        let m1 = RFMessage(identifier: "ID_1")
+        let m2 = RFMessage(identifier: "ID_2")
+        let m3 = RFMessage(identifier: "ID_3")
+        
+        manager.show(m1)
+        manager.show(m2)
+        manager.show(m3)
+        XCTAssertEqual(manager.displayingMessage, m1)
+        XCTAssertEqual(manager.queuedMessages, [m2, m3])
 
         manager.hide(withIdentifier: "ID_1")
         XCTAssertEqual(manager.displayingMessage, m2)
@@ -43,7 +72,7 @@ class Test_RFMessageManager: XCTestCase {
         XCTAssertEqual(manager.queuedMessages, [])
     }
     
-    func testHideGroup() {
+    func testHideWithGroupID() {
         let m1 = RFMessage(identifier: "ID_1")
         m1.groupIdentifier = "g1"
         let m2 = RFMessage(identifier: "ID_2")

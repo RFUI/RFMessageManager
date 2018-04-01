@@ -68,11 +68,7 @@
         @weakify(self);
         self.RFSVProgressMessageManager_dismissObserver = [[NSNotificationCenter defaultCenter] addObserverForName:SVProgressHUDDidDisappearNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
             @strongify(self);
-            RFNetworkActivityIndicatorMessage *msg = self.displayingMessage;
-            if (msg) {
-                RFAssert(msg.identifier, @"message identifier must not be nil");
-                [self hideWithIdentifier:msg.identifier];
-            }
+            [self hideMessage:self.displayingMessage];
         }];
     }
 }

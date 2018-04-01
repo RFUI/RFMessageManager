@@ -42,6 +42,8 @@ typedef NS_ENUM(NSInteger, RFMessageDisplayPriority) {
 
 - (void)showMessage:(nonnull __kindof RFMessage *)message;
 
+- (void)hideMessage:(nullable __kindof RFMessage *)message;
+
 /**
  @param identifier nil 会取消所有显示，如果 show 时的 identifier 未传，应使用 @""
  */
