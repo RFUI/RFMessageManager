@@ -8,8 +8,8 @@
  http://www.opensource.org/licenses/mit-license.php
  */
 
-#import "RFRuntime.h"
-#import "RFInitializing.h"
+#import <RFKit/RFRuntime.h>
+#import <RFInitializing/RFInitializing.h>
 
 /**
  RFMessageDisplayPriority
