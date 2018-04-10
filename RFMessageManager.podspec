@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RFMessageManager'
-  s.version          = '0.3.0'
+  s.version          = '0.3.1'
   s.summary          = 'An Abstract Message Manager.'
 
   s.homepage         = 'https://github.com/RFUI/RFMessageManager'
@@ -15,7 +15,8 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Manager'
 
   s.subspec 'Manager' do |ss|
-    ss.dependency 'RFInitializing'
+    ss.dependency 'RFInitializing', '~> 1.1'
+    ss.dependency 'RFKit/Runtime', '>= 1.7'
     ss.dependency 'RFKit/Category/NSArray'
     ss.source_files = ['RFMessageManager.{h,m}']
     ss.public_header_files = ['RFMessageManager.h']
