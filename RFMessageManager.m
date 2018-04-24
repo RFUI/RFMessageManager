@@ -171,7 +171,9 @@ static NSString *const RFMessageIdentifierNotSet = @"_no_identifier_";
 }
 
 - (void)afterInit {
-    NSAssert(self.identifier, @"%@ don't have an identifier.", self);
+    if (!self.identifier) {
+        NSLog(@"%@ don't have an identifier.", self);
+    }
 }
 
 - (NSString *)description {
