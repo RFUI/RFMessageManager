@@ -20,6 +20,8 @@
 		D54183F6206BDD1800DD25CE /* Test_RFMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183E7206BD26200DD25CE /* Test_RFMessage.swift */; };
 		D54183F7206BDD1D00DD25CE /* Test_RFMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183DB206BBA7B00DD25CE /* Test_RFMessageManager.swift */; };
 		D54183FA206C794E00DD25CE /* MBNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D54183F8206C794D00DD25CE /* MBNavigationItem.m */; };
+		D5F9F4B4208ED66500427201 /* RTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F9F4B3208ED66500427201 /* RTHelper.m */; };
+		D5F9F4B5208ED66500427201 /* RTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F9F4B3208ED66500427201 /* RTHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,10 @@
 		D54183F2206BDCFF00DD25CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D54183F8206C794D00DD25CE /* MBNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNavigationItem.m; sourceTree = "<group>"; };
 		D54183F9206C794E00DD25CE /* MBNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNavigationItem.h; sourceTree = "<group>"; };
+		D5F9F4B2208ED66400427201 /* RTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTHelper.h; sourceTree = "<group>"; };
+		D5F9F4B3208ED66500427201 /* RTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTHelper.m; sourceTree = "<group>"; };
+		D5F9F4B6208ED6D000427201 /* OC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OC-Bridging-Header.h"; sourceTree = "<group>"; };
+		D5F9F4B7208ED6DD00427201 /* OC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OC-Bridging-Header.h"; sourceTree = "<group>"; };
 		DFF2285EDB18B106627B701F /* Pods-Example-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example-iOS/Pods-Example-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E5FA99E5E4196E679EB5925D /* Pods-Test-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Test-macOS/Pods-Test-macOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +166,7 @@
 		D54183DA206BBA7B00DD25CE /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D5F9F4B7208ED6DD00427201 /* OC-Bridging-Header.h */,
 				D54183DD206BBA7B00DD25CE /* Info.plist */,
 			);
 			path = iOS;
@@ -168,6 +175,8 @@
 		D54183E3206BBAA100DD25CE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D5F9F4B2208ED66400427201 /* RTHelper.h */,
+				D5F9F4B3208ED66500427201 /* RTHelper.m */,
 				D54183E7206BD26200DD25CE /* Test_RFMessage.swift */,
 				D54183DB206BBA7B00DD25CE /* Test_RFMessageManager.swift */,
 			);
@@ -196,6 +205,7 @@
 		D54183EF206BDCFF00DD25CE /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				D5F9F4B6208ED6D000427201 /* OC-Bridging-Header.h */,
 				D54183F2206BDCFF00DD25CE /* Info.plist */,
 			);
 			path = macOS;
@@ -212,7 +222,6 @@
 				D54183BB206B685000DD25CE /* Sources */,
 				D54183BC206B685000DD25CE /* Frameworks */,
 				D54183BD206B685000DD25CE /* Resources */,
-				02C6EC4ECE3AFF44982C205D /* [CP] Embed Pods Frameworks */,
 				1BE6B9BD42EC469EF3D16439 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -232,7 +241,6 @@
 				D54183D5206BBA7B00DD25CE /* Sources */,
 				D54183D6206BBA7B00DD25CE /* Frameworks */,
 				D54183D7206BBA7B00DD25CE /* Resources */,
-				31519C605D753AF7BEDD84D7 /* [CP] Embed Pods Frameworks */,
 				F9D875E7A4F92AF4A24AB29E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -253,8 +261,6 @@
 				D54183EA206BDCFF00DD25CE /* Sources */,
 				D54183EB206BDCFF00DD25CE /* Frameworks */,
 				D54183EC206BDCFF00DD25CE /* Resources */,
-				1CB9F05D6FDA9056D63A980A /* [CP] Embed Pods Frameworks */,
-				7ABB0387AAAAB3A99F26367E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,11 +289,13 @@
 					};
 					D54183D8206BBA7B00DD25CE = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						TestTargetID = D54183BE206B685000DD25CE;
 					};
 					D54183ED206BDCFF00DD25CE = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -340,21 +348,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02C6EC4ECE3AFF44982C205D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		06062321C634390C9BACC0ED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -391,36 +384,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1CB9F05D6FDA9056D63A980A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Test-macOS/Pods-Test-macOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		31519C605D753AF7BEDD84D7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example-iOS-Test-iOS/Pods-Example-iOS-Test-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		59B0456C642D28AD86304270 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -437,21 +400,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7ABB0387AAAAB3A99F26367E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Test-macOS/Pods-Test-macOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D11C2921FA94327870D5F9F6 /* [CP] Check Pods Manifest.lock */ = {
@@ -507,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F9F4B4208ED66500427201 /* RTHelper.m in Sources */,
 				D54183E9206BD27E00DD25CE /* Test_RFMessage.swift in Sources */,
 				D54183DC206BBA7B00DD25CE /* Test_RFMessageManager.swift in Sources */,
 			);
@@ -516,6 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F9F4B5208ED66500427201 /* RTHelper.m in Sources */,
 				D54183F6206BDD1800DD25CE /* Test_RFMessage.swift in Sources */,
 				D54183F7206BDD1D00DD25CE /* Test_RFMessageManager.swift in Sources */,
 			);
@@ -752,6 +702,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Test/iOS/OC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -811,6 +762,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.RFUI.RFMessageManager.Test-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Test/iOS/OC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -879,6 +831,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Test/macOS/OC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
@@ -936,6 +889,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.RFUI.RFMessageManager.Test-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Test/macOS/OC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 			};

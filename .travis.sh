@@ -42,6 +42,7 @@ STAGE_MAIN() {
 
     elif [ "$RFCI_TASK" = "Xcode9" ]; then
         pod install
+        XC_TestMac
         XC_Test "Example-iOS" "platform=iOS Simulator,name=iPhone 6,OS=11.2"
         # XC_Test "Example-iOS" "platform=iOS Simulator,name=X1,OS=11.3"
     else
@@ -61,8 +62,4 @@ STAGE_FAILURE() {
     fi
 }
 
-if [ -z "$RFSTAGE" ]; then
-    echo "RFSTAGE is undefined, do nothing."
-else
-    "STAGE_$RFSTAGE"
-fi
+"STAGE_$RFSTAGE"

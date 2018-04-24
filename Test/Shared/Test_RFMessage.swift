@@ -30,9 +30,8 @@ class Test_RFMessage: XCTestCase {
         let msg1 = RFMessage(identifier: "zz")
         XCTAssertNotNil(msg1)
         
-//        let msg2 = RFMessage()
-//        XCTAssertNotNil(msg2, "It's not be nil, but will throw an NSInternalInconsistencyException later")
-//  How to test async NSInternalInconsistencyException throw?
+        let msg2 = RFMessage()
+        XCTAssertNotNil(msg2, "It's not be nil, but will log a warning later")
     }
     
     func testEuqal() {
