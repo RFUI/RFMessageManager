@@ -18,6 +18,19 @@
     self.RFSVProgressMessageManager_autoDismissObserving = NO;
 }
 
+- (NSString *)displayStringForMessage:(RFNetworkActivityIndicatorMessage *)msg {
+    if (msg.title.length && msg.message.length) {
+        return [NSString stringWithFormat:@"%@: %@", msg.title, msg.message];
+    }
+    else if (msg.title.length) {
+        return msg.title;
+    }
+    else if (msg.message.length) {
+        return msg.message;
+    }
+    return nil;
+}
+
 - (void)replaceMessage:(RFNetworkActivityIndicatorMessage *)displayingMessage withNewMessage:(RFNetworkActivityIndicatorMessage *)message {
     [super replaceMessage:displayingMessage withNewMessage:message];
 
@@ -26,7 +39,7 @@
         return;
     }
 
-    NSString *stautsString = (message.title.length && message.message.length)? [NSString stringWithFormat:@"%@: %@", message.title, message.message] : [NSString stringWithFormat:@"%@%@", message.title?: @"", message.message?: @""];
+    NSString *stautsString = [self displayStringForMessage:displayingMessage];
 
     SVProgressHUDMaskType maskType = message.modal ? SVProgressHUDMaskTypeBlack : SVProgressHUDMaskTypeNone;
     [SVProgressHUD setDefaultMaskType:maskType];

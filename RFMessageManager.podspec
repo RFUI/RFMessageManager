@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RFMessageManager'
-  s.version          = '0.4.0'
+  s.version          = '0.4.1'
   s.summary          = 'An Abstract Message Manager.'
 
   s.homepage         = 'https://github.com/RFUI/RFMessageManager'
