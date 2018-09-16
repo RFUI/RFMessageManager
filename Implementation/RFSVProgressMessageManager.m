@@ -39,7 +39,7 @@
         return;
     }
 
-    NSString *stautsString = [self displayStringForMessage:displayingMessage];
+    NSString *stautsString = [self displayStringForMessage:message];
 
     SVProgressHUDMaskType maskType = message.modal ? SVProgressHUDMaskTypeBlack : SVProgressHUDMaskTypeNone;
     [SVProgressHUD setDefaultMaskType:maskType];
