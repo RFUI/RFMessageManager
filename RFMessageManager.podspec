@@ -41,14 +41,6 @@ Pod::Spec.new do |s|
     ss.public_header_files = ['Implementation/RFSVProgressMessageManager.h']
   end
 
-  s.subspec 'UIAlertView' do |ss|
-    ss.ios.deployment_target = '6.0'
-    ss.dependency 'RFMessageManager/Manager'
-    ss.dependency 'RFMessageManager/RFNetworkActivityMessage'
-    ss.source_files = 'Implementation/RFAlertViewMessageManager.{h,m}'
-    ss.public_header_files = ['Implementation/RFAlertViewMessageManager.h']
-  end
-
   s.pod_target_xcconfig = {
     # These config should only exsists in develop branch.
     'WARNING_CFLAGS'=> [
