@@ -1,8 +1,8 @@
-/*!
+/*
  RFMessageManager (RFDisplay)
  
- Copyright (c) 2014, 2016, 2018 BB9z
- https://github.com/RFUI/Alpha
+ Copyright © 2014, 2016, 2018-2019 BB9z
+ https://github.com/RFUI/RFMessageManager
  
  The MIT License (MIT)
  http://www.opensource.org/licenses/mit-license.php
@@ -20,13 +20,13 @@
  @param timeInterval 0 不自动隐藏
  @param identifier 标示，新加入的显示请求会替换掉排队中的有着相同标示的请求。为 nil 会被转换为 @""。
  */
-- (void)showWithTitle:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal priority:(RFMessageDisplayPriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(nullable NSString *)identifier groupIdentifier:(nullable NSString *)groupIdentifier userInfo:(nullable NSDictionary *)userInfo;
+- (void)showWithMessage:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal priority:(RFMessageDisplayPriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(nullable NSString *)identifier groupIdentifier:(nullable NSString *)groupIdentifier;
 
 /** 显示请求进度
 
  @param progress 0～1，小于 0 表示进行中但无具体进度
  */
-- (void)showProgress:(float)progress title:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal identifier:(nullable NSString *)identifier userInfo:(nullable NSDictionary *)userInfo;
+- (void)showProgress:(float)progress message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal identifier:(nullable NSString *)identifier;
 
 - (void)alertError:(nullable NSError *)error title:(nullable NSString *)title;
 - (void)alertErrorWithMessage:(nullable NSString *)message;

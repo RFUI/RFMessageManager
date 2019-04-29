@@ -1,8 +1,8 @@
-/*!
+/*
  RFNetworkActivityIndicatorMessage
  RFMessageManager
  
- Copyright (c) 2018 BB9z
+ Copyright © 2018-2019 BB9z
  https://github.com/RFUI/RFMessageManager
  
  The MIT License (MIT)
@@ -15,20 +15,28 @@ typedef NS_ENUM(short, RFNetworkActivityIndicatorStatus) {
     RFNetworkActivityIndicatorStatusLoading = 0,
     RFNetworkActivityIndicatorStatusSuccess,
     RFNetworkActivityIndicatorStatusFail,
+    RFNetworkActivityIndicatorStatusInfo,
     
     RFNetworkActivityIndicatorStatusDownloading,
     RFNetworkActivityIndicatorStatusUploading
 };
 
-@interface RFNetworkActivityIndicatorMessage : RFMessage
-@property (nonatomic, null_resettable, copy) NSString *title;
-@property (nullable, copy) NSString *message;
+@interface RFNetworkActivityIndicatorMessage : NSObject <
+    RFMessage
+>
+@property (copy, nonnull) NSString *identifier;
+@property (copy, nonnull) NSString *groupIdentifier;
+@property (copy, nullable) NSString *type;
+@property (copy, nullable) NSString *message;
+
+@property RFMessageDisplayPriority priority;
+@property NSTimeInterval displayDuration;
+
 @property RFNetworkActivityIndicatorStatus status;
 @property BOOL modal;
 @property float progress;
-@property NSTimeInterval displayTimeInterval;
 
-@property (nullable) NSDictionary *userInfo;
+- (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
+- (nonnull instancetype)initWithIdentifier:(nonnull NSString *)identifier message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status NS_DESIGNATED_INITIALIZER;
 
-- (nonnull instancetype)initWithIdentifier:(nonnull NSString *)identifier title:(nullable NSString *)title message:(nullable NSString *)message status:(RFNetworkActivityIndicatorStatus)status API_DEPRECATED_WITH_REPLACEMENT("messageWithConfiguration:error:", macos(10.6, 10.13), ios(2.0, 11.0), watchos(2.0, 4.0), tvos(9.0, 11.0));
 @end

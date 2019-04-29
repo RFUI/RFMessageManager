@@ -19,19 +19,14 @@
 }
 
 - (NSString *)displayStringForMessage:(RFNetworkActivityIndicatorMessage *)msg {
-    if (msg.title.length && msg.message.length) {
-        return [NSString stringWithFormat:@"%@: %@", msg.title, msg.message];
-    }
-    else if (msg.title.length) {
-        return msg.title;
-    }
-    else if (msg.message.length) {
-        return msg.message;
-    }
-    return nil;
+    return msg.message;
 }
 
-- (void)replaceMessage:(RFNetworkActivityIndicatorMessage *)displayingMessage withNewMessage:(RFNetworkActivityIndicatorMessage *)message {
+- (void)replaceMessage:(id<RFMessage>)displayingMessage withNewMessage:(id<RFMessage>)aMessage {
+    RFNetworkActivityIndicatorMessage *message = aMessage;
+    if (message) {
+        NSParameterAssert([message isKindOfClass:RFNetworkActivityIndicatorMessage.class]);
+    }
     [super replaceMessage:displayingMessage withNewMessage:message];
 
     if (!message) {
@@ -54,18 +49,25 @@
             [SVProgressHUD showErrorWithStatus:stautsString];
             break;
         }
+        case RFNetworkActivityIndicatorStatusInfo: {
+            self.RFSVProgressMessageManager_autoDismissObserving = YES;
+            [SVProgressHUD showInfoWithStatus:stautsString];
+            break;
+        }
         case RFNetworkActivityIndicatorStatusDownloading:
         case RFNetworkActivityIndicatorStatusUploading: {
             self.RFSVProgressMessageManager_autoDismissObserving = NO;
             [SVProgressHUD showProgress:message.progress status:stautsString];
+            break;
         }
         case RFNetworkActivityIndicatorStatusLoading:
         default: {
             [SVProgressHUD showWithStatus:stautsString];
-            if (message.displayTimeInterval > 0) {
+            if (message.displayDuration > 0) {
                 self.RFSVProgressMessageManager_autoDismissObserving = YES;
-                [SVProgressHUD dismissWithDelay:message.displayTimeInterval];
+                [SVProgressHUD dismissWithDelay:message.displayDuration];
             }
+            break;
         }
     }
 }

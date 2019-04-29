@@ -10,14 +10,14 @@
 		04DDA15841D7E3DB05160199 /* libPods-Example-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 219EFF170EACE3662191400C /* libPods-Example-iOS.a */; };
 		B2D4F3D32A1923BBCC54A69A /* libPods-Test-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65ED60EEB15D01DD7BDCF30A /* libPods-Test-macOS.a */; };
 		CEBE41E43EDF2DFA7DEA515E /* libPods-Example-iOS-Test-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A32EDE312F90DA4AF288ED6 /* libPods-Example-iOS-Test-iOS.a */; };
+		D519A7DE2276D60C0083D9A8 /* TestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D519A7DD2276D60C0083D9A8 /* TestMessage.swift */; };
+		D519A7DF2276D60C0083D9A8 /* TestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D519A7DD2276D60C0083D9A8 /* TestMessage.swift */; };
 		D54183C3206B685100DD25CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183C2206B685100DD25CE /* AppDelegate.swift */; };
 		D54183C5206B685100DD25CE /* DMSVProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183C4206B685100DD25CE /* DMSVProgress.swift */; };
 		D54183C8206B685100DD25CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54183C6206B685100DD25CE /* Main.storyboard */; };
 		D54183CA206B685100DD25CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D54183C9206B685100DD25CE /* Assets.xcassets */; };
 		D54183CD206B685100DD25CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54183CB206B685100DD25CE /* LaunchScreen.storyboard */; };
 		D54183DC206BBA7B00DD25CE /* Test_RFMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183DB206BBA7B00DD25CE /* Test_RFMessageManager.swift */; };
-		D54183E9206BD27E00DD25CE /* Test_RFMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183E7206BD26200DD25CE /* Test_RFMessage.swift */; };
-		D54183F6206BDD1800DD25CE /* Test_RFMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183E7206BD26200DD25CE /* Test_RFMessage.swift */; };
 		D54183F7206BDD1D00DD25CE /* Test_RFMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183DB206BBA7B00DD25CE /* Test_RFMessageManager.swift */; };
 		D54183FA206C794E00DD25CE /* MBNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D54183F8206C794D00DD25CE /* MBNavigationItem.m */; };
 		D5F9F4B4208ED66500427201 /* RTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F9F4B3208ED66500427201 /* RTHelper.m */; };
@@ -42,6 +42,7 @@
 		65ED60EEB15D01DD7BDCF30A /* libPods-Test-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Test-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		735FA53B9EA138BDBFEA4922 /* Pods-Example-iOS-Test-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-iOS-Test-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example-iOS-Test-iOS/Pods-Example-iOS-Test-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9C37EB0BE59A81EC90E0CDCC /* Pods-Example-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example-iOS/Pods-Example-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		D519A7DD2276D60C0083D9A8 /* TestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMessage.swift; sourceTree = "<group>"; };
 		D54183BF206B685000DD25CE /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54183C2206B685100DD25CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D54183C4206B685100DD25CE /* DMSVProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSVProgress.swift; sourceTree = "<group>"; };
@@ -54,7 +55,6 @@
 		D54183D9206BBA7B00DD25CE /* Test-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54183DB206BBA7B00DD25CE /* Test_RFMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_RFMessageManager.swift; sourceTree = "<group>"; };
 		D54183DD206BBA7B00DD25CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D54183E7206BD26200DD25CE /* Test_RFMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_RFMessage.swift; sourceTree = "<group>"; };
 		D54183EE206BDCFF00DD25CE /* Test-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54183F2206BDCFF00DD25CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D54183F8206C794D00DD25CE /* MBNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNavigationItem.m; sourceTree = "<group>"; };
@@ -166,8 +166,8 @@
 		D54183DA206BBA7B00DD25CE /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				D5F9F4B7208ED6DD00427201 /* OC-Bridging-Header.h */,
 				D54183DD206BBA7B00DD25CE /* Info.plist */,
+				D5F9F4B7208ED6DD00427201 /* OC-Bridging-Header.h */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -177,8 +177,8 @@
 			children = (
 				D5F9F4B2208ED66400427201 /* RTHelper.h */,
 				D5F9F4B3208ED66500427201 /* RTHelper.m */,
-				D54183E7206BD26200DD25CE /* Test_RFMessage.swift */,
 				D54183DB206BBA7B00DD25CE /* Test_RFMessageManager.swift */,
+				D519A7DD2276D60C0083D9A8 /* TestMessage.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -205,8 +205,8 @@
 		D54183EF206BDCFF00DD25CE /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				D5F9F4B6208ED6D000427201 /* OC-Bridging-Header.h */,
 				D54183F2206BDCFF00DD25CE /* Info.plist */,
+				D5F9F4B6208ED6D000427201 /* OC-Bridging-Header.h */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -372,7 +372,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-resources.sh",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -381,7 +381,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		59B0456C642D28AD86304270 /* [CP] Check Pods Manifest.lock */ = {
@@ -426,7 +426,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Example-iOS-Test-iOS/Pods-Example-iOS-Test-iOS-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Example-iOS-Test-iOS/Pods-Example-iOS-Test-iOS-resources.sh",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -435,7 +435,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example-iOS-Test-iOS/Pods-Example-iOS-Test-iOS-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example-iOS-Test-iOS/Pods-Example-iOS-Test-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -456,8 +456,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5F9F4B4208ED66500427201 /* RTHelper.m in Sources */,
-				D54183E9206BD27E00DD25CE /* Test_RFMessage.swift in Sources */,
 				D54183DC206BBA7B00DD25CE /* Test_RFMessageManager.swift in Sources */,
+				D519A7DE2276D60C0083D9A8 /* TestMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,8 +466,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5F9F4B5208ED66500427201 /* RTHelper.m in Sources */,
-				D54183F6206BDD1800DD25CE /* Test_RFMessage.swift in Sources */,
 				D54183F7206BDD1D00DD25CE /* Test_RFMessageManager.swift in Sources */,
+				D519A7DF2276D60C0083D9A8 /* TestMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,7 +1,7 @@
-/*!
+/*
  RFMessageManager
  
- Copyright (c) 2014, 2016, 2018 BB9z
+ Copyright © 2014, 2016, 2018-2019 BB9z
  https://github.com/RFUI/RFMessageManager
  
  The MIT License (MIT)
@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, RFMessageDisplayPriority) {
     RFMessageDisplayPriorityReset = 1000
 };
 
-@class RFMessage;
+@protocol RFMessage;
 
 /**
  RFMessageManager is an abstract class which can manage a set of message object.
@@ -37,12 +37,14 @@ typedef NS_ENUM(NSInteger, RFMessageDisplayPriority) {
     RFInitializing
 >
 
-@property (nonatomic, nullable, readonly) __kindof RFMessage *displayingMessage;
-@property (nonatomic, nonnull, readonly) NSArray<__kindof RFMessage *> *queuedMessages;
+@property (readonly, nullable, nonatomic) id<RFMessage> displayingMessage;
+@property (readonly, nonnull, nonatomic) NSArray<id<RFMessage>> *queuedMessages;
 
-- (void)showMessage:(nonnull __kindof RFMessage *)message;
+- (void)showMessage:(nonnull id<RFMessage>)message;
 
-- (void)hideMessage:(nullable __kindof RFMessage *)message;
+- (void)hideMessage:(nullable id<RFMessage>)message;
+
+- (void)hideAll;
 
 /**
  @param identifier nil 会取消所有显示，如果 show 时的 identifier 未传，应使用 @""
@@ -66,23 +68,18 @@ typedef NS_ENUM(NSInteger, RFMessageDisplayPriority) {
  @param displayingMessage 目前显示的信息
  @param message 将要显示的信息
  */
-- (void)replaceMessage:(nullable __kindof RFMessage *)displayingMessage withNewMessage:(nullable __kindof RFMessage *)message;
+- (void)replaceMessage:(nullable id<RFMessage>)displayingMessage withNewMessage:(nullable id<RFMessage>)message;
 
 @end
 
-/**
- 
- */
-@interface RFMessage: NSObject <
-    RFInitializing
->
-@property (nonnull, copy) NSString *identifier;
-@property (nullable, copy) NSString *groupIdentifier;
+@protocol RFMessage <NSObject>
+@required
+@property (copy, nonnull) NSString *identifier;
+@property (copy, nonnull) NSString *groupIdentifier;
+@property (copy, nullable) NSString *type;
+@property (copy, nullable) NSString *message;
 @property RFMessageDisplayPriority priority;
 
-- (nonnull instancetype)initWithIdentifier:(nonnull NSString *)identifier NS_DESIGNATED_INITIALIZER;
-
-+ (nullable instancetype)messageWithConfiguration:(NS_NOESCAPE void (^__nullable)(__kindof RFMessage *__nonnull instance))configBlock error:(NSError *__nullable *__nullable)error;
-
-- (BOOL)validateConfigurationError:(NSError *__nullable *__nonnull)error;
+@optional
+@property NSTimeInterval displayDuration;
 @end

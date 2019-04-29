@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RFMessageManager'
-  s.version          = '0.4.2'
+  s.version          = '0.5.0'
   s.summary          = 'An Abstract Message Manager.'
 
   s.homepage         = 'https://github.com/RFUI/RFMessageManager'
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
   s.osx.deployment_target = '10.8'
-  s.ios.deployment_target = '6.0'
+  s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
   s.default_subspec = 'Manager'
 
