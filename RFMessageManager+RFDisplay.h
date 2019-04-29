@@ -28,7 +28,18 @@
  */
 - (void)showProgress:(float)progress message:(nullable NSString *)message status:(RFNetworkActivityStatus)status modal:(BOOL)modal identifier:(nullable NSString *)identifier;
 
-- (void)alertError:(nullable NSError *)error title:(nullable NSString *)title;
+/**
+ Display an error message
+ 
+ @param error It's localized description, failure reason and recovery suggestion are used to display.
+ @param title The string shown at the beginning of the message.
+ @param fallbackMessage This parameter will be used if the error does not have any description to display.
+ */
+- (void)alertError:(nullable NSError *)error title:(nullable NSString *)title fallbackMessage:(nullable NSString *)fallbackMessage;
+
+/**
+ Display an error message
+ */
 - (void)alertErrorWithMessage:(nullable NSString *)message;
 
 @end
