@@ -14,7 +14,7 @@ class DMSVProgressViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        messager.hide(withIdentifier: nil)
+        messager.hideAll()
     }
     
     // MARK: -

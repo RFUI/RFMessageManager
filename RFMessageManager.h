@@ -42,22 +42,24 @@ typedef NS_ENUM(NSInteger, RFMessageDisplayPriority) {
 
 - (void)showMessage:(nonnull id<RFMessage>)message;
 
+/**
+ Hide message
+ 
+ @param message if nil, do nothing.
+ */
 - (void)hideMessage:(nullable id<RFMessage>)message;
 
 - (void)hideAll;
 
 /**
- @param identifier nil 会取消所有显示，如果 show 时的 identifier 未传，应使用 @""
+ Hide all messages with the same identifier as the given parameter
  */
-- (void)hideWithIdentifier:(nullable NSString *)identifier;
+- (void)hideWithIdentifier:(nonnull NSString *)identifier;
 
 /**
- 
- 隐藏一组
- 
- @param groupIdentifier nil 会取消所有显示，如果 show 时的 identifier 未传，应使用 @""
+ Hide all messages with the same group identifier as the given parameter
  */
-- (void)hideWithGroupIdentifier:(nullable NSString *)groupIdentifier;
+- (void)hideWithGroupIdentifier:(nonnull NSString *)groupIdentifier;
 
 #pragma mark - Methods for overwrite.
 

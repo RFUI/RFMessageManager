@@ -39,9 +39,9 @@ RFInitializingRootForNSObject
 - (void)showMessage:(id<RFMessage>)message {
     NSParameterAssert(message.identifier);
 
-    // If not displaying any, display it
     id<RFMessage>dm = self._RFMessageManager_displayingMessage;
     if (!dm) {
+        // If not displaying any, display it
         [self _RFMessageManager_replaceMessage:dm withNewMessage:message];
         return;
     }
@@ -57,18 +57,7 @@ RFInitializingRootForNSObject
         return;
     }
 
-    // Needs update queue, just add or replace
-    NSUInteger ix = [mq indexOfObject:message];
-    if (ix != NSNotFound) {
-        id<RFMessage>messageInQueue = mq[ix];
-        if (message.priority >= messageInQueue.priority) {
-            // Readd it
-            [mq removeObject:message];
-            [mq addObject:message];
-        }
-        // Else ignore new message.
-    }
-    else {
+    if (![mq containsObject:message]) {
         [mq addObject:message];
     }
 }
@@ -96,11 +85,11 @@ RFInitializingRootForNSObject
 - (void)hideWithIdentifier:(NSString *)identifier {
     if (!identifier) return;
     
-    id<RFMessage>dm = self._RFMessageManager_displayingMessage;
     [self._RFMessageManager_messageQueue removeObjectsPassingTest:^BOOL(__kindof id<RFMessage> _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         return [obj.identifier isEqualToString:identifier];
     }];
 
+    id<RFMessage>dm = self._RFMessageManager_displayingMessage;
     if ([identifier isEqualToString:dm.identifier]) {
         [self _RFMessageManager_replaceMessage:dm withNewMessage:self._RFMessageManager_popNextMessageToDisplay];
     }
@@ -109,11 +98,13 @@ RFInitializingRootForNSObject
 - (void)hideWithGroupIdentifier:(NSString *)identifier {
     if (!identifier) return;
 
-    id<RFMessage>dm = self._RFMessageManager_displayingMessage;
-    [self._RFMessageManager_messageQueue filterUsingPredicate:[NSPredicate predicateWithFormat:@"groupIdentifier != %@", identifier]];
+    [self._RFMessageManager_messageQueue removeObjectsPassingTest:^BOOL(id<RFMessage>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj.groupIdentifier isEqualToString:identifier];
+    }];
     
-    if ([dm.groupIdentifier isEqualToString:identifier]) {
-        [self hideWithIdentifier:dm.identifier];
+    id<RFMessage>dm = self._RFMessageManager_displayingMessage;
+    if ([identifier isEqualToString:dm.groupIdentifier]) {
+        [self _RFMessageManager_replaceMessage:dm withNewMessage:self._RFMessageManager_popNextMessageToDisplay];
     }
 }
 
@@ -136,9 +127,11 @@ RFInitializingRootForNSObject
 #pragma mark - For overwrite
 
 - (void)_RFMessageManager_replaceMessage:(id<RFMessage>)displayingMessage withNewMessage:(id<RFMessage>)message {
-    if (displayingMessage == message) return;
+    // Don't guard equal, it may show an message current displaying.
     self._RFMessageManager_displayingMessage = message;
-    [self replaceMessage:displayingMessage withNewMessage:message];
+    if (displayingMessage || message) {
+        [self replaceMessage:displayingMessage withNewMessage:message];
+    }
 }
 
 - (void)replaceMessage:(nullable __kindof id<RFMessage>)displayingMessage withNewMessage:(nullable __kindof id<RFMessage>)message {

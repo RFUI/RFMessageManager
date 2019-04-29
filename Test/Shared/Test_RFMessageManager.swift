@@ -109,7 +109,7 @@ class Test_RFMessageManager: XCTestCase {
         manager.show(m2)
         manager.show(m3)
         XCTAssert(manager.displayingMessage === m1)
-        XCTAssertEqual(manager.queuedMessages as! [TestMessage], [m2], "m3 is same to m2, so m3 not added into queue.")
+        XCTAssertEqual(manager.queuedMessages as! [TestMessage], [m2, m3])
         
         manager.hide(withIdentifier: "ID_e")
         XCTAssert(manager.displayingMessage == nil)
