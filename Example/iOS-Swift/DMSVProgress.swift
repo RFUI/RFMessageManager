@@ -60,30 +60,30 @@ class DMSVProgressViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: UITableViewCell! = tableView.cellForRow(at: indexPath)
-        var msg: RFNetworkActivityIndicatorMessage?
+        var msg: RFNetworkActivityMessage?
         switch cell {
         case rowLoading:
             if isQueueMode {
-                msg = RFNetworkActivityIndicatorMessage(identifier: "load1", message: "load1: dismiss after 2s", status: .loading)
+                msg = RFNetworkActivityMessage(identifier: "load1", message: "load1: dismiss after 2s", status: .loading)
                 msg?.displayDuration = 2
             }
             else {
-                msg = RFNetworkActivityIndicatorMessage(identifier: "load1", message: "load1: this message won't auto dismiss", status: .loading)
+                msg = RFNetworkActivityMessage(identifier: "load1", message: "load1: this message won't auto dismiss", status: .loading)
             }
             
         case rowLoadingModal:
-            msg = RFNetworkActivityIndicatorMessage(identifier: "load2", message: "load2: dismiss after 3s", status: .loading)
+            msg = RFNetworkActivityMessage(identifier: "load2", message: "load2: dismiss after 3s", status: .loading)
             msg?.modal = true
             msg?.displayDuration = 3
             
         case rowSuccess:
-            msg = RFNetworkActivityIndicatorMessage(identifier: "success", message: "success", status: .success)
+            msg = RFNetworkActivityMessage(identifier: "success", message: "success", status: .success)
             
         case rowFail:
-            msg = RFNetworkActivityIndicatorMessage(identifier: "fail", message: "fail", status: .fail)
+            msg = RFNetworkActivityMessage(identifier: "fail", message: "fail", status: .fail)
             
         case rowInfo:
-            msg = RFNetworkActivityIndicatorMessage(identifier: "info", message: "info", status: .info)
+            msg = RFNetworkActivityMessage(identifier: "info", message: "info", status: .info)
             
         case rowHide:
             if let dm = messager.displayingMessage {

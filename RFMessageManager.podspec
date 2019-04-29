@@ -25,17 +25,17 @@ Pod::Spec.new do |s|
     ss.public_header_files = ['RFMessageManager.h']
   end
 
-  s.subspec 'RFNetworkActivityIndicatorMessage' do |ss|
+  s.subspec 'RFNetworkActivityMessage' do |ss|
     ss.dependency 'RFMessageManager/Manager'
-    ss.source_files = ['RFNetworkActivityIndicatorMessage.{h,m}', 'RFMessageManager+RFDisplay.{h,m}']
-    ss.public_header_files = ['RFNetworkActivityIndicatorMessage.h', 'RFMessageManager+RFDisplay.h']
+    ss.source_files = ['RFNetworkActivityMessage.{h,m}', 'RFMessageManager+RFDisplay.{h,m}']
+    ss.public_header_files = ['RFNetworkActivityMessage.h', 'RFMessageManager+RFDisplay.h']
   end
 
   s.subspec 'SVProgressHUD' do |ss|
     ss.ios.deployment_target = '8.0'
     ss.tvos.deployment_target = '9.0'
     ss.dependency 'RFMessageManager/Manager'
-    ss.dependency 'RFMessageManager/RFNetworkActivityIndicatorMessage'
+    ss.dependency 'RFMessageManager/RFNetworkActivityMessage'
     ss.dependency 'SVProgressHUD'
     ss.source_files = 'Implementation/RFSVProgressMessageManager.{h,m}'
     ss.public_header_files = ['Implementation/RFSVProgressMessageManager.h']
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
   s.subspec 'UIAlertView' do |ss|
     ss.ios.deployment_target = '6.0'
     ss.dependency 'RFMessageManager/Manager'
-    ss.dependency 'RFMessageManager/RFNetworkActivityIndicatorMessage'
+    ss.dependency 'RFMessageManager/RFNetworkActivityMessage'
     ss.source_files = 'Implementation/RFAlertViewMessageManager.{h,m}'
     ss.public_header_files = ['Implementation/RFAlertViewMessageManager.h']
   end

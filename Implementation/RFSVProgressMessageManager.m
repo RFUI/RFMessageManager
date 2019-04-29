@@ -18,14 +18,14 @@
     self.RFSVProgressMessageManager_autoDismissObserving = NO;
 }
 
-- (NSString *)displayStringForMessage:(RFNetworkActivityIndicatorMessage *)msg {
+- (NSString *)displayStringForMessage:(RFNetworkActivityMessage *)msg {
     return msg.message;
 }
 
 - (void)replaceMessage:(id<RFMessage>)displayingMessage withNewMessage:(id<RFMessage>)aMessage {
-    RFNetworkActivityIndicatorMessage *message = aMessage;
+    RFNetworkActivityMessage *message = aMessage;
     if (message) {
-        NSParameterAssert([message isKindOfClass:RFNetworkActivityIndicatorMessage.class]);
+        NSParameterAssert([message isKindOfClass:RFNetworkActivityMessage.class]);
     }
     [super replaceMessage:displayingMessage withNewMessage:message];
 
@@ -39,28 +39,28 @@
     SVProgressHUDMaskType maskType = message.modal ? SVProgressHUDMaskTypeBlack : SVProgressHUDMaskTypeNone;
     [SVProgressHUD setDefaultMaskType:maskType];
     switch (message.status) {
-        case RFNetworkActivityIndicatorStatusSuccess: {
+        case RFNetworkActivityStatusSuccess: {
             self.RFSVProgressMessageManager_autoDismissObserving = YES;
             [SVProgressHUD showSuccessWithStatus:stautsString];
             break;
         }
-        case RFNetworkActivityIndicatorStatusFail: {
+        case RFNetworkActivityStatusFail: {
             self.RFSVProgressMessageManager_autoDismissObserving = YES;
             [SVProgressHUD showErrorWithStatus:stautsString];
             break;
         }
-        case RFNetworkActivityIndicatorStatusInfo: {
+        case RFNetworkActivityStatusInfo: {
             self.RFSVProgressMessageManager_autoDismissObserving = YES;
             [SVProgressHUD showInfoWithStatus:stautsString];
             break;
         }
-        case RFNetworkActivityIndicatorStatusDownloading:
-        case RFNetworkActivityIndicatorStatusUploading: {
+        case RFNetworkActivityStatusDownloading:
+        case RFNetworkActivityStatusUploading: {
             self.RFSVProgressMessageManager_autoDismissObserving = NO;
             [SVProgressHUD showProgress:message.progress status:stautsString];
             break;
         }
-        case RFNetworkActivityIndicatorStatusLoading:
+        case RFNetworkActivityStatusLoading:
         default: {
             [SVProgressHUD showWithStatus:stautsString];
             if (message.displayDuration > 0) {
