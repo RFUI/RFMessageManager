@@ -19,7 +19,7 @@
 }
 
 - (NSString *)displayStringForMessage:(RFNetworkActivityMessage *)msg {
-    return msg.message;
+    return msg.message.length ? msg.message : nil;
 }
 
 - (void)replaceMessage:(id<RFMessage>)displayingMessage withNewMessage:(id<RFMessage>)aMessage {
