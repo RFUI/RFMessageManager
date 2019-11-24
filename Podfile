@@ -9,5 +9,5 @@ end
 
 target 'Test-macOS' do
     platform :osx, '10.8'
-    pod 'RFMessageManager', :path => '.', :subspecs => ['Manager', 'RFNetworkActivityIndicatorMessage']
+    pod 'RFMessageManager', :path => '.', :subspecs => ['Manager', 'RFNetworkActivityMessage']
 end

@@ -18,20 +18,15 @@
     self.RFSVProgressMessageManager_autoDismissObserving = NO;
 }
 
-- (NSString *)displayStringForMessage:(RFNetworkActivityIndicatorMessage *)msg {
-    if (msg.title.length && msg.message.length) {
-        return [NSString stringWithFormat:@"%@: %@", msg.title, msg.message];
-    }
-    else if (msg.title.length) {
-        return msg.title;
-    }
-    else if (msg.message.length) {
-        return msg.message;
-    }
-    return nil;
+- (NSString *)displayStringForMessage:(RFNetworkActivityMessage *)msg {
+    return msg.message.length ? msg.message : nil;
 }
 
-- (void)replaceMessage:(RFNetworkActivityIndicatorMessage *)displayingMessage withNewMessage:(RFNetworkActivityIndicatorMessage *)message {
+- (void)replaceMessage:(id<RFMessage>)displayingMessage withNewMessage:(id<RFMessage>)aMessage {
+    RFNetworkActivityMessage *message = aMessage;
+    if (message) {
+        NSParameterAssert([message isKindOfClass:RFNetworkActivityMessage.class]);
+    }
     [super replaceMessage:displayingMessage withNewMessage:message];
 
     if (!message) {
@@ -44,28 +39,35 @@
     SVProgressHUDMaskType maskType = message.modal ? SVProgressHUDMaskTypeBlack : SVProgressHUDMaskTypeNone;
     [SVProgressHUD setDefaultMaskType:maskType];
     switch (message.status) {
-        case RFNetworkActivityIndicatorStatusSuccess: {
+        case RFNetworkActivityStatusSuccess: {
             self.RFSVProgressMessageManager_autoDismissObserving = YES;
             [SVProgressHUD showSuccessWithStatus:stautsString];
             break;
         }
-        case RFNetworkActivityIndicatorStatusFail: {
+        case RFNetworkActivityStatusFail: {
             self.RFSVProgressMessageManager_autoDismissObserving = YES;
             [SVProgressHUD showErrorWithStatus:stautsString];
             break;
         }
-        case RFNetworkActivityIndicatorStatusDownloading:
-        case RFNetworkActivityIndicatorStatusUploading: {
+        case RFNetworkActivityStatusInfo: {
+            self.RFSVProgressMessageManager_autoDismissObserving = YES;
+            [SVProgressHUD showInfoWithStatus:stautsString];
+            break;
+        }
+        case RFNetworkActivityStatusDownloading:
+        case RFNetworkActivityStatusUploading: {
             self.RFSVProgressMessageManager_autoDismissObserving = NO;
             [SVProgressHUD showProgress:message.progress status:stautsString];
+            break;
         }
-        case RFNetworkActivityIndicatorStatusLoading:
+        case RFNetworkActivityStatusLoading:
         default: {
             [SVProgressHUD showWithStatus:stautsString];
-            if (message.displayTimeInterval > 0) {
+            if (message.displayDuration > 0) {
                 self.RFSVProgressMessageManager_autoDismissObserving = YES;
-                [SVProgressHUD dismissWithDelay:message.displayTimeInterval];
+                [SVProgressHUD dismissWithDelay:message.displayDuration];
             }
+            break;
         }
     }
 }

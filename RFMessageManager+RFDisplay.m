@@ -1,58 +1,45 @@
 
 #import "RFMessageManager+RFDisplay.h"
-#import "dout.h"
+#import <RFKit/NSArray+RFKit.h>
 
 @implementation RFMessageManager (RFDisplay)
 
-- (void)alertError:(NSError *)error title:(NSString *)title {
-    NSMutableString *message = [NSMutableString string];
-    if (error.localizedDescription) {
-        [message appendFormat:@"%@\n", error.localizedDescription];
+- (void)alertError:(NSError *)error title:(NSString *)title fallbackMessage:(NSString *)fallbackMessage {
+    NSMutableArray<NSString *> *errorFields = [NSMutableArray.alloc initWithCapacity:3];
+    [errorFields rf_addObject:error.localizedDescription];
+    [errorFields rf_addObject:error.localizedFailureReason];
+    [errorFields rf_addObject:error.localizedRecoverySuggestion];
+    if (!errorFields.count) {
+        // If error has no text to display, use fallback one.
+        [errorFields rf_addObject:fallbackMessage];
     }
-    if (error.localizedFailureReason) {
-        [message appendFormat:@"%@\n", error.localizedFailureReason];
+    if (title.length) {
+        // Display title at first.
+        [errorFields insertObject:title atIndex:0];
     }
-    if (error.localizedRecoverySuggestion) {
-        [message appendFormat:@"%@\n", error.localizedRecoverySuggestion];
-    }
-#if RFDEBUG
-    dout_error(@"Error: %@ (%d), URL:%@", error.domain, (int)error.code, error.userInfo[NSURLErrorFailingURLErrorKey]);
-#endif
-
-    [self showWithTitle:title message:message status:RFNetworkActivityIndicatorStatusFail modal:NO priority:RFMessageDisplayPriorityHigh autoHideAfterTimeInterval:0 identifier:nil groupIdentifier:nil userInfo:nil];
+    NSString *message = [errorFields componentsJoinedByString:@"\n"];
+    [self alertErrorWithMessage:message];
 }
 
-- (void)showWithTitle:(NSString *)title message:(NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal priority:(RFMessageDisplayPriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(NSString *)identifier groupIdentifier:(NSString *)groupIdentifier userInfo:(NSDictionary *)userInfo {
+- (void)showWithMessage:(NSString *)message status:(RFNetworkActivityStatus)status modal:(BOOL)modal priority:(RFMessageDisplayPriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(NSString *)identifier groupIdentifier:(NSString *)groupIdentifier {
     
-    RFNetworkActivityIndicatorMessage *obj = [RFNetworkActivityIndicatorMessage messageWithConfiguration:^(RFNetworkActivityIndicatorMessage *instance) {
-        instance.identifier = identifier?: @"";
-        instance.groupIdentifier = groupIdentifier?: @"";
-        instance.title = title;
-        instance.message = message;
-        instance.modal = modal;
-        instance.status = status;
-        instance.priority = priority;
-        instance.userInfo = userInfo;
-        instance.displayTimeInterval = timeInterval;
-    } error:nil];
-    [self showMessage:obj];
+    RFNetworkActivityMessage *instance = [RFNetworkActivityMessage.alloc initWithIdentifier:identifier?: @"" message:message status:status];
+    instance.groupIdentifier = groupIdentifier?: @"";
+    instance.modal = modal;
+    instance.priority = priority;
+    instance.displayDuration = timeInterval;
+    [self showMessage:instance];
 }
 
-- (void)showProgress:(float)progress title:(NSString *)title message:(NSString *)message status:(RFNetworkActivityIndicatorStatus)status modal:(BOOL)modal identifier:(NSString *)identifier userInfo:(NSDictionary *)userInfo {
-    RFNetworkActivityIndicatorMessage *obj = [RFNetworkActivityIndicatorMessage messageWithConfiguration:^(RFNetworkActivityIndicatorMessage *instance) {
-        instance.identifier = identifier?: @"";
-        instance.title = title;
-        instance.message = message;
-        instance.modal = modal;
-        instance.progress = progress;
-        instance.status = status;
-        instance.userInfo = userInfo;
-    } error:nil];
-    [self showMessage:obj];
+- (void)showProgress:(float)progress message:(NSString *)message status:(RFNetworkActivityStatus)status modal:(BOOL)modal identifier:(NSString *)identifier {
+    RFNetworkActivityMessage *instance = [RFNetworkActivityMessage.alloc initWithIdentifier:identifier?: @"" message:message status:status];
+    instance.modal = modal;
+    instance.progress = progress;
+    [self showMessage:instance];
 }
 
 - (void)alertErrorWithMessage:(NSString *)message {
-    [self showWithTitle:nil message:message status:RFNetworkActivityIndicatorStatusFail modal:NO priority:RFMessageDisplayPriorityHigh autoHideAfterTimeInterval:0 identifier:nil groupIdentifier:nil userInfo:nil];
+    [self showWithMessage:message status:RFNetworkActivityStatusFail modal:NO priority:RFMessageDisplayPriorityHigh autoHideAfterTimeInterval:0 identifier:nil groupIdentifier:nil];
 }
 
 @end

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RFMessageManager'
-  s.version          = '0.4.2'
+  s.version          = '0.5.0'
   s.summary          = 'An Abstract Message Manager.'
 
   s.homepage         = 'https://github.com/RFUI/RFMessageManager'
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
   s.osx.deployment_target = '10.8'
-  s.ios.deployment_target = '6.0'
+  s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
   s.default_subspec = 'Manager'
 
@@ -22,28 +22,20 @@ Pod::Spec.new do |s|
     ss.public_header_files = ['RFMessageManager.h']
   end
 
-  s.subspec 'RFNetworkActivityIndicatorMessage' do |ss|
+  s.subspec 'RFNetworkActivityMessage' do |ss|
     ss.dependency 'RFMessageManager/Manager'
-    ss.source_files = ['RFNetworkActivityIndicatorMessage.{h,m}', 'RFMessageManager+RFDisplay.{h,m}']
-    ss.public_header_files = ['RFNetworkActivityIndicatorMessage.h', 'RFMessageManager+RFDisplay.h']
+    ss.source_files = ['RFNetworkActivityMessage.{h,m}', 'RFMessageManager+RFDisplay.{h,m}']
+    ss.public_header_files = ['RFNetworkActivityMessage.h', 'RFMessageManager+RFDisplay.h']
   end
 
   s.subspec 'SVProgressHUD' do |ss|
     ss.ios.deployment_target = '8.0'
     ss.tvos.deployment_target = '9.0'
     ss.dependency 'RFMessageManager/Manager'
-    ss.dependency 'RFMessageManager/RFNetworkActivityIndicatorMessage'
+    ss.dependency 'RFMessageManager/RFNetworkActivityMessage'
     ss.dependency 'SVProgressHUD'
     ss.source_files = 'Implementation/RFSVProgressMessageManager.{h,m}'
     ss.public_header_files = ['Implementation/RFSVProgressMessageManager.h']
-  end
-
-  s.subspec 'UIAlertView' do |ss|
-    ss.ios.deployment_target = '6.0'
-    ss.dependency 'RFMessageManager/Manager'
-    ss.dependency 'RFMessageManager/RFNetworkActivityIndicatorMessage'
-    ss.source_files = 'Implementation/RFAlertViewMessageManager.{h,m}'
-    ss.public_header_files = ['Implementation/RFAlertViewMessageManager.h']
   end
 
   s.pod_target_xcconfig = {

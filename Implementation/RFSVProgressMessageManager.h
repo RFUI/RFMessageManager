@@ -1,8 +1,8 @@
-/*!
+/*
  RFSVProgressMessageManager
  RFMessageManager
  
- Copyright (c) 2014, 2018 BB9z
+ Copyright © 2014, 2018-2019 BB9z
  https://github.com/RFUI/RFMessageManager
  
  The MIT License (MIT)
@@ -10,17 +10,17 @@
  */
 
 #import "RFMessageManager.h"
-#import "RFNetworkActivityIndicatorMessage.h"
+#import "RFNetworkActivityMessage.h"
 
 /**
  RFMessageManager display using SVProgressHUD.
  
- All message object should be RFNetworkActivityIndicatorMessage.
+ All message object should be RFNetworkActivityMessage.
  
  Limitation:
  
- - Only RFNetworkActivityIndicatorStatusLoading status support displayTimeInterval.
- - Message with RFNetworkActivityIndicatorStatusSuccess and RFNetworkActivityIndicatorStatusFail status displays using SVProgressHUD build-in duration.
+ - Only RFNetworkActivityStatusLoading status support displayTimeInterval.
+ - Message with RFNetworkActivityStatusSuccess and RFNetworkActivityStatusFail status displays using SVProgressHUD build-in duration.
  - Messages for downloading or uploading progress aren't dismiss automatically and have to hide manually or be replaced with success or fail message.
  */
 @interface RFSVProgressMessageManager : RFMessageManager
