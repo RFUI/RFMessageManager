@@ -24,16 +24,6 @@
 		D5F9F4B5208ED66500427201 /* RTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F9F4B3208ED66500427201 /* RTHelper.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D54183DE206BBA7B00DD25CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D54183B5206B66FA00DD25CE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D54183BE206B685000DD25CE;
-			remoteInfo = "Example-iOS";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		1A32EDE312F90DA4AF288ED6 /* libPods-Example-iOS-Test-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example-iOS-Test-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		219EFF170EACE3662191400C /* libPods-Example-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,7 +236,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				D54183DF206BBA7B00DD25CE /* PBXTargetDependency */,
 			);
 			name = "Test-iOS";
 			productName = "Test-iOS";
@@ -471,14 +460,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D54183DF206BBA7B00DD25CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D54183BE206B685000DD25CE /* Example-iOS */;
-			targetProxy = D54183DE206BBA7B00DD25CE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D54183C6206B685100DD25CE /* Main.storyboard */ = {

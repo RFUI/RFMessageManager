@@ -1,7 +1,7 @@
 /*
  RFMessageManager
  
- Copyright © 2014, 2016, 2018-2019 BB9z
+ Copyright © 2014, 2016, 2018-2020 BB9z
  https://github.com/RFUI/RFMessageManager
  
  The MIT License (MIT)
