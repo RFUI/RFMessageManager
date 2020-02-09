@@ -1,5 +1,5 @@
 //
-//  Test_RFMessageManager.swift
+//  TestManager.swift
 //  RFMessageManager
 //
 //  Created by BB9z on 28/03/2018.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class Test_RFMessageManager: XCTestCase {
+class TestManager: XCTestCase {
     
     lazy var manager: RFMessageManager = {
         return RFMessageManager()
