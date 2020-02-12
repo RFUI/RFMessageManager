@@ -21,8 +21,14 @@ Pod::Spec.new do |s|
     ss.dependency 'RFInitializing', '>= 1.1'
     ss.dependency 'RFKit/Runtime', '>= 1.7'
     ss.dependency 'RFKit/Category/NSArray'
-    ss.source_files = ['Sources/RFMessageManager/RFMessageManager.{h,m}']
-    ss.public_header_files = ['Sources/RFMessageManager/RFMessageManager.h']
+    ss.source_files = [
+      'Sources/RFMessageManager/RFMessageManager.{h,m}',
+      'Sources/RFMessageManager/RFMessage.{h,m}',
+    ]
+    ss.public_header_files = [
+      'Sources/RFMessageManager/RFMessageManager.h',
+      'Sources/RFMessageManager/RFMessage.h',
+    ]
   end
 
   s.subspec 'RFNetworkActivityMessage' do |ss|

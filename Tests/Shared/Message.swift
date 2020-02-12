@@ -13,7 +13,7 @@ class TestMessage: NSObject,
 {
     var identifier: String
     
-    var groupIdentifier: String = ""
+    var groupIdentifier: String?
     
     var type: String?
     
