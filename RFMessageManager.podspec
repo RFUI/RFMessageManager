@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RFMessageManager'
-  s.version          = '0.5.0'
+  s.version          = '0.6.0'
   s.summary          = 'An Abstract Message Manager.'
 
   s.homepage         = 'https://github.com/RFUI/RFMessageManager'
@@ -18,14 +18,26 @@ Pod::Spec.new do |s|
     ss.dependency 'RFInitializing', '>= 1.1'
     ss.dependency 'RFKit/Runtime', '>= 1.7'
     ss.dependency 'RFKit/Category/NSArray'
-    ss.source_files = ['RFMessageManager.{h,m}']
-    ss.public_header_files = ['RFMessageManager.h']
+    ss.source_files = [
+      'Sources/RFMessageManager/RFMessageManager.{h,m}',
+      'Sources/RFMessageManager/RFMessage.{h,m}',
+    ]
+    ss.public_header_files = [
+      'Sources/RFMessageManager/RFMessageManager.h',
+      'Sources/RFMessageManager/RFMessage.h',
+    ]
   end
 
   s.subspec 'RFNetworkActivityMessage' do |ss|
     ss.dependency 'RFMessageManager/Manager'
-    ss.source_files = ['RFNetworkActivityMessage.{h,m}', 'RFMessageManager+RFDisplay.{h,m}']
-    ss.public_header_files = ['RFNetworkActivityMessage.h', 'RFMessageManager+RFDisplay.h']
+    ss.source_files = [
+      'Sources/RFMessageManager/RFNetworkActivityMessage.{h,m}',
+      'Sources/RFMessageManager/RFMessageManager+RFDisplay.{h,m}'
+    ]
+    ss.public_header_files = [
+      'Sources/RFMessageManager/RFNetworkActivityMessage.h',
+      'Sources/RFMessageManager/RFMessageManager+RFDisplay.h'
+    ]
   end
 
   s.subspec 'SVProgressHUD' do |ss|
@@ -34,8 +46,8 @@ Pod::Spec.new do |s|
     ss.dependency 'RFMessageManager/Manager'
     ss.dependency 'RFMessageManager/RFNetworkActivityMessage'
     ss.dependency 'SVProgressHUD'
-    ss.source_files = 'Implementation/RFSVProgressMessageManager.{h,m}'
-    ss.public_header_files = ['Implementation/RFSVProgressMessageManager.h']
+    ss.source_files = 'Sources/RFSVProgressMessageManager/*.{h,m}'
+    ss.public_header_files = ['Sources/RFSVProgressMessageManager/*.h']
   end
 
   s.pod_target_xcconfig = {

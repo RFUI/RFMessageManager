@@ -103,9 +103,30 @@ RFInitializingRootForNSObject
     }];
     
     id<RFMessage>dm = self._RFMessageManager_displayingMessage;
-    if ([identifier isEqualToString:dm.groupIdentifier]) {
+    NSString *dmIdentifier = dm.groupIdentifier;
+    if ([identifier isEqualToString:dmIdentifier]) {
         [self _RFMessageManager_replaceMessage:dm withNewMessage:self._RFMessageManager_popNextMessageToDisplay];
     }
+}
+
+- (void)updateMessageOfIdentifier:(NSString *)identifier withMessage:(id<RFMessage>)message {
+    NSParameterAssert(message);
+    if (!identifier) return;
+
+    id<RFMessage>dm = self._RFMessageManager_displayingMessage;
+    if ([dm.identifier isEqualToString:identifier]) {
+        [self _RFMessageManager_replaceMessage:dm withNewMessage:message];
+        return;
+    }
+    NSInteger idx = [self._RFMessageManager_messageQueue indexOfObjectPassingTest:^BOOL(id<RFMessage>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.identifier isEqualToString:identifier]) {
+            *stop = YES;
+            return YES;
+        }
+        return NO;
+    }];
+    if (idx == NSNotFound) return;
+    [self._RFMessageManager_messageQueue replaceObjectAtIndex:idx withObject:message];
 }
 
 - (id<RFMessage>)_RFMessageManager_popNextMessageToDisplay {

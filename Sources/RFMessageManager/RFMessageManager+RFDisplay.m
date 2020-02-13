@@ -31,7 +31,7 @@
     [self showMessage:instance];
 }
 
-- (void)showProgress:(float)progress message:(NSString *)message status:(RFNetworkActivityStatus)status modal:(BOOL)modal identifier:(NSString *)identifier {
+- (void)showProgress:(double)progress message:(NSString *)message status:(RFNetworkActivityStatus)status modal:(BOOL)modal identifier:(NSString *)identifier {
     RFNetworkActivityMessage *instance = [RFNetworkActivityMessage.alloc initWithIdentifier:identifier?: @"" message:message status:status];
     instance.modal = modal;
     instance.progress = progress;

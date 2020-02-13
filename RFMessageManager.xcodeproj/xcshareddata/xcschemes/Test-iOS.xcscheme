@@ -14,9 +14,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D54183ED206BDCFF00DD25CE"
-               BuildableName = "Test-macOS.xctest"
-               BlueprintName = "Test-macOS"
+               BlueprintIdentifier = "D54183D8206BBA7B00DD25CE"
+               BuildableName = "Test-iOS.xctest"
+               BlueprintName = "Test-iOS"
                ReferencedContainer = "container:RFMessageManager.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D54183ED206BDCFF00DD25CE"
-               BuildableName = "Test-macOS.xctest"
-               BlueprintName = "Test-macOS"
+               BlueprintIdentifier = "D54183D8206BBA7B00DD25CE"
+               BuildableName = "Test-iOS.xctest"
+               BlueprintName = "Test-iOS"
                ReferencedContainer = "container:RFMessageManager.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -61,9 +61,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D54183ED206BDCFF00DD25CE"
-            BuildableName = "Test-macOS.xctest"
-            BlueprintName = "Test-macOS"
+            BlueprintIdentifier = "D54183D8206BBA7B00DD25CE"
+            BuildableName = "Test-iOS.xctest"
+            BlueprintName = "Test-iOS"
             ReferencedContainer = "container:RFMessageManager.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

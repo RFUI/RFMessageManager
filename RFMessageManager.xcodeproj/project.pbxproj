@@ -10,29 +10,21 @@
 		04DDA15841D7E3DB05160199 /* libPods-Example-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 219EFF170EACE3662191400C /* libPods-Example-iOS.a */; };
 		B2D4F3D32A1923BBCC54A69A /* libPods-Test-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65ED60EEB15D01DD7BDCF30A /* libPods-Test-macOS.a */; };
 		CEBE41E43EDF2DFA7DEA515E /* libPods-Example-iOS-Test-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A32EDE312F90DA4AF288ED6 /* libPods-Example-iOS-Test-iOS.a */; };
-		D519A7DE2276D60C0083D9A8 /* TestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D519A7DD2276D60C0083D9A8 /* TestMessage.swift */; };
-		D519A7DF2276D60C0083D9A8 /* TestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D519A7DD2276D60C0083D9A8 /* TestMessage.swift */; };
+		D519A7DE2276D60C0083D9A8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D519A7DD2276D60C0083D9A8 /* Message.swift */; };
+		D519A7DF2276D60C0083D9A8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D519A7DD2276D60C0083D9A8 /* Message.swift */; };
 		D54183C3206B685100DD25CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183C2206B685100DD25CE /* AppDelegate.swift */; };
 		D54183C5206B685100DD25CE /* DMSVProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183C4206B685100DD25CE /* DMSVProgress.swift */; };
 		D54183C8206B685100DD25CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54183C6206B685100DD25CE /* Main.storyboard */; };
 		D54183CA206B685100DD25CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D54183C9206B685100DD25CE /* Assets.xcassets */; };
 		D54183CD206B685100DD25CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54183CB206B685100DD25CE /* LaunchScreen.storyboard */; };
-		D54183DC206BBA7B00DD25CE /* Test_RFMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183DB206BBA7B00DD25CE /* Test_RFMessageManager.swift */; };
-		D54183F7206BDD1D00DD25CE /* Test_RFMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183DB206BBA7B00DD25CE /* Test_RFMessageManager.swift */; };
+		D54183DC206BBA7B00DD25CE /* TestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183DB206BBA7B00DD25CE /* TestManager.swift */; };
+		D54183F7206BDD1D00DD25CE /* TestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183DB206BBA7B00DD25CE /* TestManager.swift */; };
 		D54183FA206C794E00DD25CE /* MBNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D54183F8206C794D00DD25CE /* MBNavigationItem.m */; };
+		D5A2DCF023F5656E005142EB /* TestNetworkActivityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2DCEF23F5656E005142EB /* TestNetworkActivityMessage.swift */; };
+		D5A2DCF123F5656E005142EB /* TestNetworkActivityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2DCEF23F5656E005142EB /* TestNetworkActivityMessage.swift */; };
 		D5F9F4B4208ED66500427201 /* RTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F9F4B3208ED66500427201 /* RTHelper.m */; };
 		D5F9F4B5208ED66500427201 /* RTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F9F4B3208ED66500427201 /* RTHelper.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D54183DE206BBA7B00DD25CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D54183B5206B66FA00DD25CE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D54183BE206B685000DD25CE;
-			remoteInfo = "Example-iOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1A32EDE312F90DA4AF288ED6 /* libPods-Example-iOS-Test-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example-iOS-Test-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,7 +34,7 @@
 		65ED60EEB15D01DD7BDCF30A /* libPods-Test-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Test-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		735FA53B9EA138BDBFEA4922 /* Pods-Example-iOS-Test-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-iOS-Test-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example-iOS-Test-iOS/Pods-Example-iOS-Test-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9C37EB0BE59A81EC90E0CDCC /* Pods-Example-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example-iOS/Pods-Example-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		D519A7DD2276D60C0083D9A8 /* TestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMessage.swift; sourceTree = "<group>"; };
+		D519A7DD2276D60C0083D9A8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D54183BF206B685000DD25CE /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54183C2206B685100DD25CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D54183C4206B685100DD25CE /* DMSVProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSVProgress.swift; sourceTree = "<group>"; };
@@ -53,12 +45,14 @@
 		D54183D3206B806200DD25CE /* OCBridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCBridging-Header.h"; sourceTree = "<group>"; };
 		D54183D4206BB68400DD25CE /* RFUI-Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RFUI-Config.xcconfig"; sourceTree = "<group>"; };
 		D54183D9206BBA7B00DD25CE /* Test-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D54183DB206BBA7B00DD25CE /* Test_RFMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_RFMessageManager.swift; sourceTree = "<group>"; };
+		D54183DB206BBA7B00DD25CE /* TestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestManager.swift; sourceTree = "<group>"; };
 		D54183DD206BBA7B00DD25CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D54183EE206BDCFF00DD25CE /* Test-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54183F2206BDCFF00DD25CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D54183F8206C794D00DD25CE /* MBNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNavigationItem.m; sourceTree = "<group>"; };
 		D54183F9206C794E00DD25CE /* MBNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNavigationItem.h; sourceTree = "<group>"; };
+		D5483BA523F030A800F875DB /* Example-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example-iOS.entitlements"; sourceTree = "<group>"; };
+		D5A2DCEF23F5656E005142EB /* TestNetworkActivityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNetworkActivityMessage.swift; sourceTree = "<group>"; };
 		D5F9F4B2208ED66400427201 /* RTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTHelper.h; sourceTree = "<group>"; };
 		D5F9F4B3208ED66500427201 /* RTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTHelper.m; sourceTree = "<group>"; };
 		D5F9F4B6208ED6D000427201 /* OC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OC-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -125,7 +119,7 @@
 				03AE588ADB8E8D378064FCA9 /* Frameworks */,
 				8522E7E8B70EDBBE3150722F /* Pods */,
 				D54183C0206B685000DD25CE /* Products */,
-				D54183E5206BBC0B00DD25CE /* Test */,
+				D54183E5206BBC0B00DD25CE /* Tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,6 +149,7 @@
 		D54183D2206B801E00DD25CE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D5483BA523F030A800F875DB /* Example-iOS.entitlements */,
 				D54183F9206C794E00DD25CE /* MBNavigationItem.h */,
 				D54183F8206C794D00DD25CE /* MBNavigationItem.m */,
 				D54183D3206B806200DD25CE /* OCBridging-Header.h */,
@@ -175,22 +170,23 @@
 		D54183E3206BBAA100DD25CE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D519A7DD2276D60C0083D9A8 /* Message.swift */,
 				D5F9F4B2208ED66400427201 /* RTHelper.h */,
 				D5F9F4B3208ED66500427201 /* RTHelper.m */,
-				D54183DB206BBA7B00DD25CE /* Test_RFMessageManager.swift */,
-				D519A7DD2276D60C0083D9A8 /* TestMessage.swift */,
+				D54183DB206BBA7B00DD25CE /* TestManager.swift */,
+				D5A2DCEF23F5656E005142EB /* TestNetworkActivityMessage.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		D54183E5206BBC0B00DD25CE /* Test */ = {
+		D54183E5206BBC0B00DD25CE /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				D54183DA206BBA7B00DD25CE /* iOS */,
 				D54183EF206BDCFF00DD25CE /* macOS */,
 				D54183E3206BBAA100DD25CE /* Shared */,
 			);
-			path = Test;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		D54183E6206BBC2900DD25CE /* Example */ = {
@@ -246,7 +242,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				D54183DF206BBA7B00DD25CE /* PBXTargetDependency */,
 			);
 			name = "Test-iOS";
 			productName = "Test-iOS";
@@ -279,7 +274,7 @@
 			attributes = {
 				CLASSPREFIX = DM;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = RFUI;
 				TargetAttributes = {
 					D54183BE206B685000DD25CE = {
@@ -291,7 +286,6 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
-						TestTargetID = D54183BE206B685000DD25CE;
 					};
 					D54183ED206BDCFF00DD25CE = {
 						CreatedOnToolsVersion = 9.2;
@@ -455,9 +449,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D519A7DE2276D60C0083D9A8 /* Message.swift in Sources */,
 				D5F9F4B4208ED66500427201 /* RTHelper.m in Sources */,
-				D54183DC206BBA7B00DD25CE /* Test_RFMessageManager.swift in Sources */,
-				D519A7DE2276D60C0083D9A8 /* TestMessage.swift in Sources */,
+				D54183DC206BBA7B00DD25CE /* TestManager.swift in Sources */,
+				D5A2DCF023F5656E005142EB /* TestNetworkActivityMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,21 +460,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D519A7DF2276D60C0083D9A8 /* Message.swift in Sources */,
 				D5F9F4B5208ED66500427201 /* RTHelper.m in Sources */,
-				D54183F7206BDD1D00DD25CE /* Test_RFMessageManager.swift in Sources */,
-				D519A7DF2276D60C0083D9A8 /* TestMessage.swift in Sources */,
+				D54183F7206BDD1D00DD25CE /* TestManager.swift in Sources */,
+				D5A2DCF123F5656E005142EB /* TestNetworkActivityMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D54183DF206BBA7B00DD25CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D54183BE206B685000DD25CE /* Example-iOS */;
-			targetProxy = D54183DE206BBA7B00DD25CE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D54183C6206B685100DD25CE /* Main.storyboard */ = {
@@ -505,6 +493,33 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D54183D4206BB68400DD25CE /* RFUI-Config.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Example/Shared/OCBridging-Header.h";
 			};
 			name = Debug;
@@ -513,6 +528,31 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D54183D4206BB68400DD25CE /* RFUI-Config.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Example/Shared/OCBridging-Header.h";
 			};
 			name = Release;
@@ -548,10 +588,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Example/Shared/Example-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -576,6 +619,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.RFUI.RFMessageManager.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -614,10 +658,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Example/Shared/Example-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -635,6 +682,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.RFUI.RFMessageManager.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -647,7 +695,6 @@
 			baseConfigurationReference = 735FA53B9EA138BDBFEA4922 /* Pods-Example-iOS-Test-iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -674,6 +721,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -693,7 +741,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Test/iOS/Info.plist;
+				INFOPLIST_FILE = Tests/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -702,11 +750,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "Test/iOS/OC-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/iOS/OC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example-iOS.app/Example-iOS";
 			};
 			name = Debug;
 		};
@@ -715,7 +762,6 @@
 			baseConfigurationReference = 2DB51C46282E6DD0627B6D13 /* Pods-Example-iOS-Test-iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -742,6 +788,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -755,18 +802,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Test/iOS/Info.plist;
+				INFOPLIST_FILE = Tests/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.RFUI.RFMessageManager.Test-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Test/iOS/OC-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/iOS/OC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example-iOS.app/Example-iOS";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -822,7 +868,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Test/macOS/Info.plist;
+				INFOPLIST_FILE = Tests/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -831,9 +877,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "Test/macOS/OC-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/macOS/OC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -882,16 +928,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Test/macOS/Info.plist;
+				INFOPLIST_FILE = Tests/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.RFUI.RFMessageManager.Test-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "Test/macOS/OC-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/macOS/OC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
