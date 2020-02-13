@@ -8,26 +8,6 @@
 
 import XCTest
 
-class MessageManager: RFMessageManager {
-    var lastDisplayingMessage: RFMessage?
-    var lastNewMessage: RFMessage?
-
-    override func replace(_ displayingMessage: RFMessage?, withNewMessage message: RFMessage?) {
-        lastDisplayingMessage = displayingMessage
-        lastNewMessage = message
-    }
-
-    var queueObjects: [TestMessage]? {
-        return queuedMessages as? [TestMessage]
-    }
-
-    func reset() {
-        hideAll()
-        lastNewMessage = nil
-        lastDisplayingMessage = nil
-    }
-}
-
 class TestManager: XCTestCase {
     
     lazy var manager: MessageManager = {

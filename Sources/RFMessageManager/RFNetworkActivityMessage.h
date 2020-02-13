@@ -25,7 +25,7 @@ typedef NS_ENUM(short, RFNetworkActivityStatus) {
     RFMessage
 >
 @property (copy, nonnull) NSString *identifier;
-@property (copy, nonnull) NSString *groupIdentifier;
+@property (copy, nullable) NSString *groupIdentifier;
 @property (copy, nullable) NSString *type;
 @property (copy, nullable) NSString *message;
 
@@ -34,7 +34,7 @@ typedef NS_ENUM(short, RFNetworkActivityStatus) {
 
 @property RFNetworkActivityStatus status;
 @property BOOL modal;
-@property float progress;
+@property double progress;
 
 - (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithIdentifier:(nonnull NSString *)identifier message:(nullable NSString *)message status:(RFNetworkActivityStatus)status NS_DESIGNATED_INITIALIZER;

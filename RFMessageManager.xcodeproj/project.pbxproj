@@ -20,6 +20,8 @@
 		D54183DC206BBA7B00DD25CE /* TestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183DB206BBA7B00DD25CE /* TestManager.swift */; };
 		D54183F7206BDD1D00DD25CE /* TestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54183DB206BBA7B00DD25CE /* TestManager.swift */; };
 		D54183FA206C794E00DD25CE /* MBNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D54183F8206C794D00DD25CE /* MBNavigationItem.m */; };
+		D5A2DCF023F5656E005142EB /* TestNetworkActivityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2DCEF23F5656E005142EB /* TestNetworkActivityMessage.swift */; };
+		D5A2DCF123F5656E005142EB /* TestNetworkActivityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2DCEF23F5656E005142EB /* TestNetworkActivityMessage.swift */; };
 		D5F9F4B4208ED66500427201 /* RTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F9F4B3208ED66500427201 /* RTHelper.m */; };
 		D5F9F4B5208ED66500427201 /* RTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F9F4B3208ED66500427201 /* RTHelper.m */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,7 @@
 		D54183F8206C794D00DD25CE /* MBNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNavigationItem.m; sourceTree = "<group>"; };
 		D54183F9206C794E00DD25CE /* MBNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNavigationItem.h; sourceTree = "<group>"; };
 		D5483BA523F030A800F875DB /* Example-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example-iOS.entitlements"; sourceTree = "<group>"; };
+		D5A2DCEF23F5656E005142EB /* TestNetworkActivityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNetworkActivityMessage.swift; sourceTree = "<group>"; };
 		D5F9F4B2208ED66400427201 /* RTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTHelper.h; sourceTree = "<group>"; };
 		D5F9F4B3208ED66500427201 /* RTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTHelper.m; sourceTree = "<group>"; };
 		D5F9F4B6208ED6D000427201 /* OC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OC-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -171,6 +174,7 @@
 				D5F9F4B2208ED66400427201 /* RTHelper.h */,
 				D5F9F4B3208ED66500427201 /* RTHelper.m */,
 				D54183DB206BBA7B00DD25CE /* TestManager.swift */,
+				D5A2DCEF23F5656E005142EB /* TestNetworkActivityMessage.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -448,6 +452,7 @@
 				D519A7DE2276D60C0083D9A8 /* Message.swift in Sources */,
 				D5F9F4B4208ED66500427201 /* RTHelper.m in Sources */,
 				D54183DC206BBA7B00DD25CE /* TestManager.swift in Sources */,
+				D5A2DCF023F5656E005142EB /* TestNetworkActivityMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +463,7 @@
 				D519A7DF2276D60C0083D9A8 /* Message.swift in Sources */,
 				D5F9F4B5208ED66500427201 /* RTHelper.m in Sources */,
 				D54183F7206BDD1D00DD25CE /* TestManager.swift in Sources */,
+				D5A2DCF123F5656E005142EB /* TestNetworkActivityMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

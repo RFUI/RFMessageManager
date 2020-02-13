@@ -18,7 +18,7 @@
  @param modal 是否以模态显示该信息，即显示时是否响应用户交互
  @param priority 状态优先级，会控制队列行为，优先显示高优先级的消息
  @param timeInterval 0 不自动隐藏
- @param identifier 标示，新加入的显示请求会替换掉排队中的有着相同标示的请求。为 nil 会被转换为 @""。
+ @param identifier 标示。为 nil 会被转换为 @""。
  */
 - (void)showWithMessage:(nullable NSString *)message status:(RFNetworkActivityStatus)status modal:(BOOL)modal priority:(RFMessageDisplayPriority)priority autoHideAfterTimeInterval:(NSTimeInterval)timeInterval identifier:(nullable NSString *)identifier groupIdentifier:(nullable NSString *)groupIdentifier;
 
@@ -26,7 +26,7 @@
 
  @param progress 0～1，小于 0 表示进行中但无具体进度
  */
-- (void)showProgress:(float)progress message:(nullable NSString *)message status:(RFNetworkActivityStatus)status modal:(BOOL)modal identifier:(nullable NSString *)identifier;
+- (void)showProgress:(double)progress message:(nullable NSString *)message status:(RFNetworkActivityStatus)status modal:(BOOL)modal identifier:(nullable NSString *)identifier;
 
 /**
  Display an error message
@@ -40,6 +40,6 @@
 /**
  Display an error message
  */
-- (void)alertErrorWithMessage:(nullable NSString *)message;
+- (void)alertErrorWithMessage:(nullable NSString *)message NS_SWIFT_NAME(alertError(message:));
 
 @end
