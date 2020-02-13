@@ -189,12 +189,12 @@ class TestManager: XCTestCase {
 
         manager.show(m1org)
         manager.show(m2org)
-        manager.updateMessage(ofIdentifier: ID1, with: m1new)
+        manager.update(identifier: ID1, message: m1new)
         XCTAssertEqual(manager.displayingMessage?.message, "new")
         XCTAssert(manager.lastDisplayingMessage === m1org)
         XCTAssert(manager.lastNewMessage === m1new)
 
-        manager.updateMessage(ofIdentifier: ID2, with: m2new)
+        manager.update(identifier: ID2, message: m2new)
         XCTAssertEqual(manager.queueObjects, [m2new])
         XCTAssert(manager.lastDisplayingMessage === m1org)
         XCTAssert(manager.lastNewMessage === m1new)

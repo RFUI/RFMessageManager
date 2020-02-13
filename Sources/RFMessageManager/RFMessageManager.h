@@ -63,7 +63,7 @@
 /**
  Update a message that is being displayed or the first in the queue with the same identifier.
  */
-- (void)updateMessageOfIdentifier:(nonnull NSString *)identifier withMessage:(nonnull id<RFMessage>)message;
+- (void)updateMessageOfIdentifier:(nonnull NSString *)identifier withMessage:(nonnull id<RFMessage>)message NS_SWIFT_NAME(update(identifier:message:));
 
 #pragma mark - Methods for overwrite.
 
