@@ -8,11 +8,36 @@
 
 import XCTest
 
+class MessageManager: RFMessageManager {
+    var lastDisplayingMessage: RFMessage?
+    var lastNewMessage: RFMessage?
+
+    override func replace(_ displayingMessage: RFMessage?, withNewMessage message: RFMessage?) {
+        lastDisplayingMessage = displayingMessage
+        lastNewMessage = message
+    }
+
+    var queueObjects: [TestMessage]? {
+        return queuedMessages as? [TestMessage]
+    }
+
+    func reset() {
+        hideAll()
+        lastNewMessage = nil
+        lastDisplayingMessage = nil
+    }
+}
+
 class TestManager: XCTestCase {
     
-    lazy var manager: RFMessageManager = {
-        return RFMessageManager()
+    lazy var manager: MessageManager = {
+        return MessageManager()
     }()
+
+    override func setUp() {
+        super.setUp()
+        manager.reset()
+    }
     
     func testHide() {
         let m1 = TestMessage(identifier: "ID_1")
@@ -114,5 +139,39 @@ class TestManager: XCTestCase {
         manager.hide(withIdentifier: "ID_e")
         XCTAssert(manager.displayingMessage == nil)
         XCTAssertEqual(manager.queuedMessages as! [TestMessage], [])
+    }
+
+    func testPriority() {
+        let m1 = TestMessage(identifier: "ID_1")
+        m1.priority = RFMessageDisplayPriority(rawValue: 100)!
+        let m2 = TestMessage(identifier: "ID_2")
+        m2.priority = RFMessageDisplayPriority(rawValue: 200)!
+        let m3 = TestMessage(identifier: "ID_3")
+        m3.priority = .high
+        let m4 = TestMessage(identifier: "ID_4")
+        m4.priority = .reset
+
+        manager.show(m1)
+        manager.show(m2)
+        XCTAssert(manager.displayingMessage === m1)
+        XCTAssertEqual(manager.queueObjects, [m2])
+
+        // Add high priority message should replace displayingMessage.
+        manager.show(m3)
+        XCTAssert(manager.displayingMessage === m3)
+        XCTAssertEqual(manager.queueObjects, [m2])
+
+        // Add reset priority message should clear queue.
+        manager.show(m4)
+        XCTAssert(manager.displayingMessage === m4)
+        XCTAssertEqual(manager.queueObjects, [])
+
+        // Message with higher priority should display first.
+        manager.show(m1)
+        manager.show(m2)
+        XCTAssertEqual(manager.queueObjects, [m1, m2])
+        manager.hide(manager.displayingMessage)
+        XCTAssert(manager.displayingMessage === m2)
+        XCTAssertEqual(manager.queueObjects, [m1])
     }
 }
