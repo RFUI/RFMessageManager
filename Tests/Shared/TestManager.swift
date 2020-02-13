@@ -174,4 +174,29 @@ class TestManager: XCTestCase {
         XCTAssert(manager.displayingMessage === m2)
         XCTAssertEqual(manager.queueObjects, [m1])
     }
+
+    func testUpdate() {
+        let ID1 = "ID_1"
+        let ID2 = "ID_2"
+        let m1org = TestMessage(identifier: ID1)
+        m1org.message = "org"
+        let m1new = TestMessage(identifier: ID1)
+        m1new.message = "new"
+        let m2org = TestMessage(identifier: ID2)
+        m2org.message = "org"
+        let m2new = TestMessage(identifier: ID2)
+        m2new.message = "new"
+
+        manager.show(m1org)
+        manager.show(m2org)
+        manager.updateMessage(ofIdentifier: ID1, with: m1new)
+        XCTAssertEqual(manager.displayingMessage?.message, "new")
+        XCTAssert(manager.lastDisplayingMessage === m1org)
+        XCTAssert(manager.lastNewMessage === m1new)
+
+        manager.updateMessage(ofIdentifier: ID2, with: m2new)
+        XCTAssertEqual(manager.queueObjects, [m2new])
+        XCTAssert(manager.lastDisplayingMessage === m1org)
+        XCTAssert(manager.lastNewMessage === m1new)
+    }
 }

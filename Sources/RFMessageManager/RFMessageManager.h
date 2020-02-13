@@ -60,6 +60,11 @@
  */
 - (void)hideWithGroupIdentifier:(nonnull NSString *)groupIdentifier;
 
+/**
+ Update a message that is being displayed or the first in the queue with the same identifier.
+ */
+- (void)updateMessageOfIdentifier:(nonnull NSString *)identifier withMessage:(nonnull id<RFMessage>)message;
+
 #pragma mark - Methods for overwrite.
 
 /**

@@ -109,7 +109,7 @@ RFInitializingRootForNSObject
     }
 }
 
-- (void)updateMessage:(id<RFMessage>)message forIdentifier:(NSString *)identifier {
+- (void)updateMessageOfIdentifier:(NSString *)identifier withMessage:(id<RFMessage>)message {
     NSParameterAssert(message);
     if (!identifier) return;
 
