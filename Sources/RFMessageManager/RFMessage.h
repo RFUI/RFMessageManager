@@ -28,22 +28,22 @@ typedef NS_ENUM(NSInteger, RFMessageDisplayPriority) {
 @required
 
 /// A string identifier for this message. May be used to update or hide messages.
-@property (copy, nonnull) NSString *identifier;
+@property (readonly, copy, nonnull) NSString *identifier;
 
 /// The group identifier of this message. May be used to hide messages.
-@property (copy, nullable) NSString *groupIdentifier;
+@property (readonly, copy, nullable) NSString *groupIdentifier;
 
 /// Type string. Can be used to distinguish the display.
-@property (copy, nullable) NSString *type;
+@property (readonly, copy, nullable) NSString *type;
 
 /// Text to display.
-@property (copy, nullable) NSString *message;
+@property (readonly, copy, nullable) NSString *message;
 
 /// Display priority.
-@property RFMessageDisplayPriority priority;
+@property (readonly) RFMessageDisplayPriority priority;
 
 @optional
 
 /// If great than zero, manager should automatically hide message after this time.
-@property NSTimeInterval displayDuration;
+@property (readonly) NSTimeInterval displayDuration;
 @end
