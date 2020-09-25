@@ -88,7 +88,7 @@ STAGE_MAIN() {
             fi
         fi
 
-    elif [ "$RFCI_TASK" = "Xcode10" ]; then
+    elif [ "$RFCI_TASK" = "Xcode11" ]; then
         pod install
         XC_TestMac
         XC_TestAutoIOS "Test-iOS"
