@@ -81,14 +81,14 @@ class DMSVProgressViewController: UITableViewController {
                     let msg1 = RFNetworkActivityMessage(identifier: load2ID, message: "load2: dismiss after 2s", status: .uploading)
                     msg1.progress = 0.3
                     msg1.modal = true
-                    self.messager.updateMessage(ofIdentifier: load2ID, with: msg1)
+                    self.messager.update(identifier: load2ID, message: msg1)
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     let msg2 = RFNetworkActivityMessage(identifier: load2ID, message: "load2: dismiss after 1s", status: .uploading)
                     msg2.progress = 0.7
                     msg2.modal = true
                     msg2.displayDuration = 1
-                    self.messager.updateMessage(ofIdentifier: load2ID, with: msg2)
+                    self.messager.update(identifier: load2ID, message: msg2)
                 }
             }
             
